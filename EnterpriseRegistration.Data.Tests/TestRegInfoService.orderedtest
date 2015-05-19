@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<OrderedTest name="testreginfoservice" storage="c:\users\beeven\documents\visual studio 2013\projects\enterpriseregistration\enterpriseregistration.data.tests\testreginfoservice.orderedtest" id="f0cdda11-9b3c-4388-80ab-3c973fd4892c" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestLinks>
+    <TestLink id="6b9491f7-f40b-24b1-f700-952eb93c0e5b" name="TestSave" storage="bin\debug\enterpriseregistration.data.tests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="a11a006a-9db3-189d-1179-53abee92fed5" name="TestGet" storage="bin\debug\enterpriseregistration.data.tests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="359f2526-b555-d6b0-e71a-85b115da6ccc" name="TestUpdate" storage="bin\debug\enterpriseregistration.data.tests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="d5599159-62fe-23d2-84a0-069a0ae5d747" name="TestSetReplied" storage="bin\debug\enterpriseregistration.data.tests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  </TestLinks>
+</OrderedTest>

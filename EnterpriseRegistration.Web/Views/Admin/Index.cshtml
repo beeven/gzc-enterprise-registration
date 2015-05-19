@@ -1,0 +1,176 @@
+﻿@*@model EnterpriseRegistration.UserProfile.Models.User*@
+
+@{
+    ViewBag.Title = "跨境贸易电子商务企业备案申请";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>跨境贸易电子商务企业备案申请</title>
+    <script src="../../Scripts/jquery-1.8.2.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link href="../../Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Common.css" />
+</head>
+<body>
+    <form class="" id="form1">
+        @Html.Action("User","RegInfoes")
+        <h2 style="text-align:center;">跨境电子商务企业备案</h2>
+
+        <div id="List" style="width:94%;margin:0px 3%;min-width:950px;overflow:auto;" >
+            <table style="float:right;">
+            <tr>
+                <td style="width: 250px">
+                    <label id="txtPageInfo" style="font-size: 16px;" ></label>
+                <td style="width: 60px">
+                    <button id="btnFirstpage" class="btn btn-default">首页</button></td>
+                <td style="width: 70px">
+                    <button id="btnUppage" class="btn btn-default">上一页</button></td>
+                <td style="width: 70px">
+                    <button id="btnDownpage" class="btn btn-default">下一页</button></td>
+                <td style="width: 60px" class="fl">
+                    <button id="btnLastpage" class="btn btn-default">末页</button></td>
+            </tr>
+            </table>
+        </div>
+        
+    </form>
+</body>
+</html>
+
+<script type="text/javascript">
+    var currentpage = 0;
+    var ListCount = 0;
+    var maxPageNum = 0;
+
+    $(function () {
+        function regeditBtnActive() {
+
+            $('#btnFirstpage').click(function () {
+                GoToFirstPage();
+                return false;
+            })
+            $('#btnUppage').click(function () {
+                GoToUpPage();
+                return false;
+            })
+            $('#btnDownpage').click(function () {
+                GoToDownPage();
+                return false;
+            })
+            $('#btnLastpage').click(function () {
+                GoToLastPage();
+                return false;
+            })
+        }
+
+        function init() {
+            currentpage = 0;
+            queryData();
+        }
+
+        regeditBtnActive();
+        init();
+    });
+
+    function queryData() {
+        $('#List div').remove();
+        if ($('#List table').length > 1) {
+            $('#List table:first').remove();
+        }
+        $('#List table').hide();
+        $('#List').prepend("<div style='text-align: center; vertical-align: middle'><img src='/img/loading.gif' class='mr10' />Loading……</div>");
+
+        $.ajax({
+            url: '@Url.Action("Query", "Admin")',
+            type: 'post',
+            data: {
+                "pagesize": 20,
+                "currentpage": currentpage
+            },
+            success: function (result) {
+                $('#List div').remove();
+                $('#List').prepend(result);
+                ListCount = $('#hfCount').val();
+                maxPageNum = ListCount / 20;
+
+                if (ListCount % 20 != 0) {
+                    maxPageNum = parseInt(maxPageNum);
+                }
+                else {
+                    maxPageNum = maxPageNum - 1;
+                }
+                if (maxPageNum == -1) {
+                    $('#List').html("暂无数据");
+                }
+                else {
+                    SetPageInfo();
+                }
+            },
+            cache: false
+        });
+    }
+
+    function SetPageInfo() {
+        $('#txtPageInfo').text("共" + ListCount + "条数据，" + (currentpage + 1) + " / " + (maxPageNum + 1) + "页，每页20条");
+        if (currentpage == maxPageNum) {
+            if (currentpage == 0) {
+                $('#btnFirstpage').attr("disabled", "disabled");
+                $('#btnUppage').attr("disabled", "disabled");
+                $('#btnDownpage').attr("disabled", "disabled");
+                $('#btnLastpage').attr("disabled", "disabled");
+            }
+            else {
+                $('#btnFirstpage').removeAttr("disabled");
+                $('#btnUppage').removeAttr("disabled");
+                $('#btnDownpage').attr("disabled", "disabled");
+                $('#btnLastpage').attr("disabled", "disabled");
+            }
+        }
+        else if (currentpage != 0) {
+            $('#btnFirstpage').removeAttr("disabled");
+            $('#btnUppage').removeAttr("disabled");
+            $('#btnDownpage').removeAttr("disabled");
+            $('#btnLastpage').removeAttr("disabled");
+        }
+        else {
+            $('#btnDownpage').removeAttr("disabled");
+            $('#btnLastpage').removeAttr("disabled");
+            $('#btnFirstpage').attr("disabled", "disabled");
+            $('#btnUppage').attr("disabled", "disabled");
+        }
+        
+
+        $('#List table').show();
+       
+    }
+
+    //首页
+    function GoToFirstPage() {
+        currentpage = 0;
+        queryData();
+    }
+    //末页
+    function GoToLastPage() {
+        currentpage = maxPageNum;
+        queryData();
+    }
+    //上一页
+    function GoToUpPage() {
+        if (currentpage != 0) {
+            currentpage--;
+            queryData();
+        }
+    }
+    //下一页
+    function GoToDownPage() {
+        if (currentpage < maxPageNum) {
+            currentpage++;
+            queryData();
+        }
+
+    }
+</script>

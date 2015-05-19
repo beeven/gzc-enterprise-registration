@@ -1,0 +1,126 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnterpriseRegistration.Data", "EnterpriseRegistration.Data\EnterpriseRegistration.Data.csproj", "{D2C718B8-2135-4116-9451-4123959A578B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnterpriseRegistration.MailService.Console", "EnterpriseRegistration.MailService.Console\EnterpriseRegistration.MailService.Console.csproj", "{35211F4E-E3D8-418A-926E-18DC76C31F0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnterpriseRegistration.Data.Tests", "EnterpriseRegistration.Data.Tests\EnterpriseRegistration.Data.Tests.csproj", "{6755D801-563A-4A22-8A5F-57BF833254E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnterpriseRegistration.Mail", "EnterpriseRegistration.Mail\EnterpriseRegistration.Mail.csproj", "{1FB4A1AE-8E53-43F6-A1DC-EDA00BCC4330}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnterpriseRegistration.Web", "EnterpriseRegistration.Web\EnterpriseRegistration.Web.csproj", "{F9B76671-9515-4A12-939A-CFB558F24C93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnterpriseRegistration.Mail.Tests", "EnterpriseRegistration.Mail.Tests\EnterpriseRegistration.Mail.Tests.csproj", "{B682B828-EAD3-42F9-89B4-E0ED5B33C4DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnterpriseRegistration.MailService.Service", "EnterpriseRegistration.MailService.Service\EnterpriseRegistration.MailService.Service.csproj", "{B8183B29-9272-4B87-A669-DD5F632469E2}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "EnterpriseRegistration.WebMail", "http://localhost:3274", "{D8266CE9-5F63-4000-8D3A-520631C54859}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "SAK"
+		SccAuxPath = "SAK"
+		SccLocalPath = "SAK"
+		SccProvider = "SAK"
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_3274"
+		Debug.AspNetCompiler.PhysicalPath = "EnterpriseRegistration.WebMail\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_3274\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_3274"
+		Release.AspNetCompiler.PhysicalPath = "EnterpriseRegistration.WebMail\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_3274\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "EnterpriseRegistration.WebMail\"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnterpriseRegistration.UserProfile", "EnterpriseRegistration.UserProfile\EnterpriseRegistration.UserProfile.csproj", "{333B37F0-CC9F-4975-A397-5454CC2644DC}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 10
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://10.53.1.15:8080/tfs/gz
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = EnterpriseRegistration.Data\\EnterpriseRegistration.Data.csproj
+		SccProjectName1 = EnterpriseRegistration.Data
+		SccLocalPath1 = EnterpriseRegistration.Data
+		SccProjectUniqueName2 = EnterpriseRegistration.MailService.Console\\EnterpriseRegistration.MailService.Console.csproj
+		SccProjectName2 = EnterpriseRegistration.MailService.Console
+		SccLocalPath2 = EnterpriseRegistration.MailService.Console
+		SccProjectUniqueName3 = EnterpriseRegistration.Data.Tests\\EnterpriseRegistration.Data.Tests.csproj
+		SccProjectName3 = EnterpriseRegistration.Data.Tests
+		SccLocalPath3 = EnterpriseRegistration.Data.Tests
+		SccProjectUniqueName4 = EnterpriseRegistration.Mail\\EnterpriseRegistration.Mail.csproj
+		SccProjectName4 = EnterpriseRegistration.Mail
+		SccLocalPath4 = EnterpriseRegistration.Mail
+		SccProjectUniqueName5 = EnterpriseRegistration.Web\\EnterpriseRegistration.Web.csproj
+		SccProjectName5 = EnterpriseRegistration.Web
+		SccLocalPath5 = EnterpriseRegistration.Web
+		SccProjectUniqueName6 = EnterpriseRegistration.Mail.Tests\\EnterpriseRegistration.Mail.Tests.csproj
+		SccProjectName6 = EnterpriseRegistration.Mail.Tests
+		SccLocalPath6 = EnterpriseRegistration.Mail.Tests
+		SccProjectUniqueName7 = EnterpriseRegistration.MailService.Service\\EnterpriseRegistration.MailService.Service.csproj
+		SccProjectName7 = EnterpriseRegistration.MailService.Service
+		SccLocalPath7 = EnterpriseRegistration.MailService.Service
+		SccWebProject8 = true
+		SccProjectUniqueName8 = http://localhost:3274
+		SccProjectName8 = EnterpriseRegistration.WebMail
+		SccLocalPath8 = EnterpriseRegistration.WebMail
+		SccProjectEnlistmentChoice8 = 2
+		SccProjectUniqueName9 = EnterpriseRegistration.UserProfile\\EnterpriseRegistration.UserProfile.csproj
+		SccProjectName9 = EnterpriseRegistration.UserProfile
+		SccLocalPath9 = EnterpriseRegistration.UserProfile
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2C718B8-2135-4116-9451-4123959A578B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2C718B8-2135-4116-9451-4123959A578B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2C718B8-2135-4116-9451-4123959A578B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2C718B8-2135-4116-9451-4123959A578B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35211F4E-E3D8-418A-926E-18DC76C31F0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35211F4E-E3D8-418A-926E-18DC76C31F0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35211F4E-E3D8-418A-926E-18DC76C31F0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35211F4E-E3D8-418A-926E-18DC76C31F0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6755D801-563A-4A22-8A5F-57BF833254E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6755D801-563A-4A22-8A5F-57BF833254E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6755D801-563A-4A22-8A5F-57BF833254E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6755D801-563A-4A22-8A5F-57BF833254E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FB4A1AE-8E53-43F6-A1DC-EDA00BCC4330}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FB4A1AE-8E53-43F6-A1DC-EDA00BCC4330}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FB4A1AE-8E53-43F6-A1DC-EDA00BCC4330}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FB4A1AE-8E53-43F6-A1DC-EDA00BCC4330}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9B76671-9515-4A12-939A-CFB558F24C93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9B76671-9515-4A12-939A-CFB558F24C93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9B76671-9515-4A12-939A-CFB558F24C93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9B76671-9515-4A12-939A-CFB558F24C93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B682B828-EAD3-42F9-89B4-E0ED5B33C4DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B682B828-EAD3-42F9-89B4-E0ED5B33C4DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B682B828-EAD3-42F9-89B4-E0ED5B33C4DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B682B828-EAD3-42F9-89B4-E0ED5B33C4DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8183B29-9272-4B87-A669-DD5F632469E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8183B29-9272-4B87-A669-DD5F632469E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8183B29-9272-4B87-A669-DD5F632469E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8183B29-9272-4B87-A669-DD5F632469E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8266CE9-5F63-4000-8D3A-520631C54859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8266CE9-5F63-4000-8D3A-520631C54859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8266CE9-5F63-4000-8D3A-520631C54859}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8266CE9-5F63-4000-8D3A-520631C54859}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{333B37F0-CC9F-4975-A397-5454CC2644DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{333B37F0-CC9F-4975-A397-5454CC2644DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{333B37F0-CC9F-4975-A397-5454CC2644DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{333B37F0-CC9F-4975-A397-5454CC2644DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

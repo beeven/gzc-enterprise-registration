@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EnterpriseRegistration.UserProfile.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="EnterpriseRegistration_UserProfile_WebReference_OguReaderService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://10.53.1.162/GZCheckService/OguReaderService.asmx</Value>
+    </Setting>
+    <Setting Name="EnterpriseRegistration_UserProfile_WebAccreditReference_AccreditReaderService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://10.53.1.162/GZCheckService/AccreditReaderService.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

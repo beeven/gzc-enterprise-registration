@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEntAccessData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EntAccess" type="tns:EntAccessDateClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EntAccessDateClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MASTER_CUSTOMS" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TRADE_NAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ENT_ABBREVIATION" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TRADE_CODE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BUSINESS_TYPE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ENT_TYPE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IS_ENTABROAD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ORG_CODE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LEGAL_PERSON" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LEGAL_IDCARD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BUSINESS_LICENSENO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TAX_REGISTRATION_CODE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ENT_PHONE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ENT_PERSON" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ENT_ADDR" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NETWORK_NAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NETWORK_WEBSITE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LOG_TRACK_WEBSITE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NOTE" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEntAccessDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEntAccessDataResult" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEntAccessDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEntAccessData" />
+  </wsdl:message>
+  <wsdl:message name="GetEntAccessDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEntAccessDataResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebEntAccessSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEntAccessData">
+      <wsdl:input message="tns:GetEntAccessDataSoapIn" />
+      <wsdl:output message="tns:GetEntAccessDataSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebEntAccessSoap" type="tns:WebEntAccessSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEntAccessData">
+      <soap:operation soapAction="http://tempuri.org/GetEntAccessData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebEntAccessSoap12" type="tns:WebEntAccessSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEntAccessData">
+      <soap12:operation soapAction="http://tempuri.org/GetEntAccessData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebEntAccess">
+    <wsdl:port name="WebEntAccessSoap" binding="tns:WebEntAccessSoap">
+      <soap:address location="http://10.53.1.193/Webservice_BC/WebEntAccess.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebEntAccessSoap12" binding="tns:WebEntAccessSoap12">
+      <soap12:address location="http://10.53.1.193/Webservice_BC/WebEntAccess.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

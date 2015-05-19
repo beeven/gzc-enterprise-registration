@@ -1,0 +1,249 @@
+﻿@model EnterpriseRegistration.Data.Models.RegInfo
+
+@{
+    ViewBag.Title = "跨境贸易电子商务企业备案申请";
+}
+
+
+
+<html>
+<head>
+    <title>跨境贸易电子商务企业备案申请</title>
+    <script src="../../Scripts/jquery-1.8.2.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link href="../../Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <style type="text/css">
+        table.Hid_table>tbody>tr >td
+        {
+            border:1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <form class="" id="form1" >
+         @Html.Action("User","RegInfoes")
+       <div style="text-decoration:underline;margin:8px 10px; font-size:18px;" >
+           <a href="#" onclick="history.back(-1);return false;" >返回</a>
+
+       </div>
+        <div style="padding:5px 130px;">
+       <div>主&nbsp;&nbsp;&nbsp;题： @Model.Subject</div>
+       <div>发件人： @Model.From</div>
+       <div>时&nbsp;&nbsp;&nbsp;间： @Model.ReceivedDate</div>
+       <div>附&nbsp;&nbsp;&nbsp;件： 
+           <div> 
+               <ol>
+                   @foreach(var item in @Model.Attachments )
+                   {
+                        <li>@Html.ActionLink(@item.Name,"DownLoad","MailDetail",new {id=@item.Id,mimetype=@item.MIME,displayName=@item.Name},new {id=@item.Id,mimetype=@item.MIME,displayName=@item.Name})</li>
+                   }
+               </ol>
+           </div>
+
+       </div>
+        <div id="applyTab">申请表：
+        </div>
+        <label id="lblShowContent" style="text-decoration:underline;margin:8px 0px; color:blue;font-size:18px;width:120px;">显示正文内容</label>
+       <div id="content" style="display:none;">内&nbsp;&nbsp;&nbsp;容：<div id="contentbody">@Html.Raw(@Model.Body)</div></div>
+        <div id="Hid_applyTab" style="display:none;">
+            <table class="Hid_table" >
+                <tr>
+                    <td>企业名称：</td>
+                    <td id="EnterPriseName"></td>
+                    <td>企业简称：</td>
+                    <td id="EnterPriseAbbreviation"></td>
+                </tr>
+                <tr><td>拟申请开展业务的现场海关：</td>
+                    <td id="CustomsName"></td>
+                    <td>企业海关编码：</td>
+                    <td id="CustomsID"></td>
+                    
+                </tr>
+                 <tr>
+                    <td>营业执照编号：</td>
+                    <td id="LicenseID"></td>
+                    <td>税务登记代码：</td>
+                    <td id="TaxCode"></td>
+                </tr>
+                <tr>
+                     <td>是否为境外企业：</td>
+                    <td id="Abroad"></td>
+                    <td>法人代表姓名：</td>
+                    <td id="LegalName"></td>
+                </tr>
+                <tr>
+                    <td>法人代表身份证号：</td>
+                    <td id="LegalID"></td>
+                   <td>组织机构代码：</td>
+                    <td id="OrgCode"></td>
+                </tr>
+                <tr>
+                    <td>企业联系人：</td>
+                    <td id="EnterPriseContact"></td>
+                    <td>企业联系电话：</td>
+                    <td id="EnterPrisePhone"></td>
+                </tr>
+                 <tr>
+                    <td>企业地址：</td>
+                    <td id="EnterPriseAddress"></td>
+                     <td>电商交易平台网址：</td>
+                    <td id="TransactionWebsite"></td>
+                    
+                </tr>
+                 <tr>
+                    <td>电商交易平台名称：</td>
+                    <td id="TransactionName"></td>
+                    <td>电商企业的交易平台：</td>
+                   <td id="RecordID"></td>
+                    
+                </tr>
+                 <tr>
+                    <td>企业经办人手机号码：</td>
+                    <td id="AttnMobile"></td>
+                    <td>企业经办人邮箱：</td>
+                    <td id="AttnEmail"></td>
+                   
+                </tr>
+                <tr>
+                    <td>ICP备案证号：</td>
+                    <td id="ICPCode"></td>
+                   <td>物流信息查询网址：</td>
+                    <td id="LogisticsWebsite"></td>
+                </tr>
+                
+                 <tr>
+                    <td>申请业务模式：</td>
+                    <td ><table>
+                            <tr><td>直购进口：</td><td  id="DirectFlag"></td></tr>
+                            <tr><td>网购保税进口：</td><td id="OnlineFlag"></td></tr>
+                         </table>
+                    </td>
+                    <td  rowspan="2">随附资料：</td>
+                    <td rowspan="2" ><table>
+                            <tr><td>法人代表身份证复印件：</td><td  id="LegalCopyFlag"></td></tr> 
+                            <tr><td>税务登记复印件：</td><td  id="TaxCopyFlag"></td></tr>
+                            <tr><td>《组织机构代码证》副本复印件：</td><td id="OrgCopyFlag"></td></tr>
+                            <tr><td>支付业务批准附件：</td><td id="PayCopyFlag"></td></tr>
+                            <tr><td>营业执照复印件：</td><td id="LicenseCopyFlag"></td></tr>
+                            <tr><td>中华人民共和国报关单位注册登记证书：</td><td id="UnitsFlag"></td></tr>
+                            <tr><td>电信经营许可证：</td><td id="OperateFlag"></td></tr>
+                         </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td  >企业类别：</td>
+                    <td ><table>
+                            <tr><td>跨境贸易电子商务经营企业：</td><td  id="ManagementFlag"></td></tr>
+                            <tr><td>跨境贸易电子商务交易企业：</td><td id="TransactionFlag"></td></tr>
+                            <tr><td>跨境贸易电子商务物流企业：</td><td id="LogisticsFlag"></td></tr>
+                            <tr><td>跨境贸易电子商务支付企业：</td><td id="PayFlag"></td></tr>
+                         </table>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>备注：</td>
+                    <td colspan="3" id="Remark"></td>
+                </tr>
+            </table>
+            
+
+        </div>
+        </div>
+        
+    </form>
+</body>
+ 
+</html>
+<script type="text/javascript">
+    jQuery("#lblShowContent").click(function () {
+        if (jQuery("#content").css("display") == "none") {
+            jQuery("#content").css("display", "");
+            jQuery("#lblShowContent").text("隐藏正文内容");
+        }
+        else {
+            jQuery("#content").css("display", "none");
+            jQuery("#lblShowContent").text("显示正文内容");
+        }
+    })
+
+
+
+    function GetApplyTable() {
+        $.ajax({
+            url: '@Url.Action("GetApplyTable", "MailDetail")',
+            type: 'POST',
+            data: {
+                    "replyId": "@Model.Id"
+                },
+            success: function (result) {
+                var list = jQuery.parseJSON(result);
+                if (list == null) {
+                    jQuery("#applyTab").append("无有效格式的企业备案申请表");
+                }
+                else if (list.ID == "00000000-0000-0000-0000-000000000000") {
+                    jQuery("#applyTab").append("无有效格式的企业备案申请表");
+                }
+                else {
+                    jQuery("#EnterPriseName").text(list.EnterPriseName);
+                    jQuery("#EnterPriseAbbreviation").text(list.EnterPriseAbbreviation);
+                    jQuery("#Abroad").text(list.Abroad==0?"是":"否");
+                    jQuery("#OrgCode").text(list.OrgCode);
+                    jQuery("#LicenseID").text(list.LicenseID);
+                    jQuery("#TaxCode").text(list.TaxCode);
+                    jQuery("#CustomsName").text(list.CustomsName);
+                    jQuery("#LegalName").text(list.LegalName);
+                    jQuery("#LegalID").text(list.LegalID);
+                    jQuery("#CustomsID").text(list.CustomsID);
+                    jQuery("#EnterPriseContact").text(list.EnterPriseContact);
+                    jQuery("#EnterPrisePhone").text(list.EnterPrisePhone);
+                    jQuery("#EnterPriseAddress").text(list.EnterPriseAddress);
+                    jQuery("#TransactionName").text(list.TransactionName);
+                    jQuery("#TransactionWebsite").text(list.TransactionWebsite);
+                    jQuery("#LogisticsWebsite").text(list.LogisticsWebsite);
+                    jQuery("#RecordID").text(list.RecordID);
+                    jQuery("#Remark").text(list.Remark);
+                    jQuery("#AttnMobile").text(list.AttnMobile);
+                    jQuery("#AttnEmail").text(list.AttnEmail);
+
+                    jQuery("#DirectFlag").text(list.DirectFlag == 0 ? "是" : "否");
+                    jQuery("#OnlineFlag").text(list.OnlineFlag == 0 ? "是" : "否");
+                    //jQuery("#RetailFlag").text(list.RetailFlag == 0 ? "是" : "否");
+                    jQuery("#ManagementFlag").text(list.ManagementFlag == 0 ? "是" : "否");
+                    jQuery("#TransactionFlag").text(list.TransactionFlag ==0 ? "是" : "否");
+                    jQuery("#LogisticsFlag").text(list.LogisticsFlag == 0 ? "是" : "否");
+                    jQuery("#PayFlag").text(list.PayFlag == 0 ? "是" : "否");
+                    jQuery("#LegalCopyFlag").text(list.LegalCopyFlag == 0 ? "有" : "无");
+                    jQuery("#TaxCopyFlag").text(list.TaxCopyFlag == 0 ? "有" : "无");
+                    jQuery("#OrgCopyFlag").text(list.OrgCopyFlag == 0 ? "有" : "无");
+                    jQuery("#PayCopyFlag").text(list.PayCopyFlag == 0 ? "有" : "无");
+                    jQuery("#LicenseCopyFlag").text(list.LicenseCopyFlag ==0 ? "有" : "无");
+                    jQuery("#UnitsFlag").text(list.UnitsFlag == 0 ? "有" : "无");
+                    jQuery("#OperateFlag").text(list.UnitsFlag == 0 ? "有" : "无");
+
+                    jQuery("#applyTab").append(jQuery("#Hid_applyTab").html());
+                }
+                },
+                error: function (data, msg, tt) {
+                    jQuery("#showReply").css("display", "none");
+                    alert(tt);
+                },
+                cache: false
+            });
+    }
+
+    GetApplyTable();
+
+    (function ($) {
+        jQuery(document).ready(function () {
+            var len = jQuery("#contentbody").html().trim();
+            if (len=="")
+            {
+                $("#lblShowContent").hide();
+            }
+        });
+
+        })(jQuery)
+</script>
+

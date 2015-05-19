@@ -1,0 +1,41 @@
+﻿@using System.Data;
+
+<div id="listcontent">
+<input id="totalCount" type="hidden" value="@Model.ListCount" />
+<input id="totalPage" type="hidden" value="@Model.TotalPage" />
+@if(Model.ListCount!=0){
+<table  class="bordered table_content" >
+    <thead>
+        <tr>
+           @foreach (DataColumn dc in Model.dtItem.Columns)
+           {
+               if (dc.ColumnName == "申请企业类别")
+               {
+                    <th class="datastatisticTH">@dc.ColumnName</th>
+                }
+                else{
+                    <th>@dc.ColumnName</th>
+               }
+           }
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (DataRow dr in Model.dtItem.Rows)
+       {
+           <tr>
+            @foreach (DataColumn dc in Model.dtItem.Columns)
+            {
+                <td>@dr[dc.ColumnName]</td>
+            }
+           </tr>
+       }
+     </tbody>
+</table>
+}
+else
+{
+    <div>
+        暂无数据
+    </div>
+}
+</div>

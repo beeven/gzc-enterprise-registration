@@ -1,0 +1,288 @@
+﻿@model IEnumerable<EnterpriseRegistration.Data.Models.Customs>
+
+@{
+    ViewBag.Title = "跨境贸易电子商务企业备案申请";
+}
+
+<html>
+<head>
+    <title>跨境贸易电子商务企业备案申请</title>
+    <script src="../../Scripts/jquery-1.8.2.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link href="../../Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Common.css" />
+
+</head>
+<body>
+     @Html.Action("User","RegInfoes")
+    <form class="" id="form1" >
+        <table style="display:none;" >
+            <tr>
+                <td>作业起始时间</td>
+                <td>作业结束时间</td>
+                <td>企业名称</td>
+                <td>企业备案号</td>
+                <td>业务模式</td>
+                <td>企业类别</td>
+                <td>作业现场</td>
+                <td rowspan="2">
+                    <input type="button" value="查询" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><input id="EnterPriseName" type="text" /></td>
+                <td><input id="RecordNum" type="text" /></td>
+                <td>
+                    <select id="BusinessMode">
+                        <option value="OnlineFlag" >网购保税进口</option>
+                        <option value="DirectFlag" >直购进口</option>
+                    </select>
+                </td>
+                <td>
+                    <select id="EnterPriseCategory">
+                        <option value="ManagementFlag" >跨境贸易电子商务经营企业</option>
+                        <option value="TransactionFlag" >跨境贸易电子商务交易企业</option>
+                        <option value="LogisticsFlag" >跨境贸易电子商务物流企业</option>
+                        <option value="PayFlag" >跨境贸易电子商务支付企业</option>
+                    </select>
+                </td>
+                <td>
+                    <select id="CustomsName">
+                      @if (@Model != null)
+                        {
+                            foreach (EnterpriseRegistration.Data.Models.Customs item in Model)
+                            {
+                               <option value="@item.CustomCode">@item.CustomName</option> 
+                            }
+                        }
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <div class="outerDiv" >
+            <input style="display:none;" type="button" value="导出Excel" id="excel" />
+            <div class="search">
+                <input type="text" class="titleUnInput" id="title" value="请输入申请企业名称或组织机构代码" /><input value="查询" type="button" id="SearchByTitle" />
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+         <div class="outerDiv">
+        <div id="list">
+            <table id="pageInfo" style="float:right;">
+            <tr>
+                <td style="width: 250px">
+                    <label id="txtPageInfo" style="font-size: 16px;" ></label>
+                <td style="width: 60px">
+                    <button id="btnFirstpage" class="btn btn-default">首页</button></td>
+                <td style="width: 70px">
+                    <button id="btnUppage" class="btn btn-default">上一页</button></td>
+                <td style="width: 70px">
+                    <button id="btnDownpage" class="btn btn-default">下一页</button></td>
+                <td style="width: 60px" class="fl">
+                    <button id="btnLastpage" class="btn btn-default">末页</button></td>
+            </tr>
+            </table>
+        </div>
+        </div>
+    </form>
+</body>
+</html>
+<script type="text/javascript">
+    (function ($) {
+        $(document).ready(function () {
+
+
+            var currentpage = 0;
+            var ListCount = 0;
+            var maxPageNum = 0;
+            var pageSize = 20;
+            var title = "";
+
+            function regeditBtnActive() {
+
+                $('#btnFirstpage').click(function () {
+                    GoToFirstPage();
+                    return false;
+                })
+                $('#btnUppage').click(function () {
+                    GoToUpPage();
+                    return false;
+                })
+                $('#btnDownpage').click(function () {
+                    GoToDownPage();
+                    return false;
+                })
+                $('#btnLastpage').click(function () {
+                    GoToLastPage();
+                    return false;
+                })
+            }
+
+            function init() {
+                currentpage = 1;
+                regeditBtnActive();
+                Query();
+            }
+            init();
+
+            $("#title").focus(function () {
+                $("#title").val("");
+                $("#title").removeClass("titleUnInput");
+                $("#title").addClass("titleInputed");
+            });
+
+
+            $("#title").blur(function () {
+                if ($("#title").val() == "" || $("#title").val() == "请输入申请企业名称或组织机构代码") {
+                    $("#title").val("请输入申请企业名称或组织机构代码");
+                    $("#title").removeClass("titleInputed");
+                    $("#title").addClass("titleUnInput");
+                }
+            });
+
+            $("#excel").click(function () {
+                window.location = '@Url.Action("Excel", "DataStatistic")';
+
+            })
+
+            function Query() {
+                $("#pageInfo").hide();
+                $("#excel").hide();
+                $("#listcontent").remove();
+                $.ajax({
+                    url: '@Url.Action("Query", "DataStatistic")',
+                    type: 'post',
+                    data: {
+                        "pagesize": pageSize,
+                        "currentpage": currentpage,
+                        "time": (new Date()).getTime(),
+                        "filter": title
+                    },
+                    success: function (result) {
+                        $("#list").prepend(result);
+                        ListCount = $('#totalCount').val();
+                        maxPageNum = $('#totalPage').val();
+                        $('#txtPageInfo').text("共" + ListCount + "条数据，" + currentpage + " / " + maxPageNum + "页，每页" + pageSize + "条");
+                        if (currentpage == maxPageNum) {
+                            if (currentpage == 1) {
+                                $('#btnFirstpage').attr("disabled", "disabled");
+                                $('#btnUppage').attr("disabled", "disabled");
+                                $('#btnDownpage').attr("disabled", "disabled");
+                                $('#btnLastpage').attr("disabled", "disabled");
+                            }
+                            else {
+                                $('#btnFirstpage').removeAttr("disabled");
+                                $('#btnUppage').removeAttr("disabled");
+                                $('#btnDownpage').attr("disabled", "disabled");
+                                $('#btnLastpage').attr("disabled", "disabled");
+                            }
+                        }
+                        else if (currentpage != 1) {
+                            $('#btnFirstpage').removeAttr("disabled");
+                            $('#btnUppage').removeAttr("disabled");
+                            $('#btnDownpage').removeAttr("disabled");
+                            $('#btnLastpage').removeAttr("disabled");
+                        }
+                        else {
+                            $('#btnDownpage').removeAttr("disabled");
+                            $('#btnLastpage').removeAttr("disabled");
+                            $('#btnFirstpage').attr("disabled", "disabled");
+                            $('#btnUppage').attr("disabled", "disabled");
+                        }
+                        if (maxPageNum != 0) {
+                            $("#pageInfo").show();
+                            $("#excel").show();
+                        }
+                    },
+                    cache: false
+            });
+
+            }
+
+           
+
+            function SetPageInfo() {
+                $('#txtPageInfo').text("共" + ListCount + "条数据，" + (currentpage + 1) + " / " + (maxPageNum + 1) + "页，每页20条");
+                if (currentpage == maxPageNum) {
+                    if (currentpage == 0) {
+                        $('#btnFirstpage').attr("disabled", "disabled");
+                        $('#btnUppage').attr("disabled", "disabled");
+                        $('#btnDownpage').attr("disabled", "disabled");
+                        $('#btnLastpage').attr("disabled", "disabled");
+                    }
+                    else {
+                        $('#btnFirstpage').removeAttr("disabled");
+                        $('#btnUppage').removeAttr("disabled");
+                        $('#btnDownpage').attr("disabled", "disabled");
+                        $('#btnLastpage').attr("disabled", "disabled");
+                    }
+                }
+                else if (currentpage != 0) {
+                    $('#btnFirstpage').removeAttr("disabled");
+                    $('#btnUppage').removeAttr("disabled");
+                    $('#btnDownpage').removeAttr("disabled");
+                    $('#btnLastpage').removeAttr("disabled");
+                }
+                else {
+                    $('#btnDownpage').removeAttr("disabled");
+                    $('#btnLastpage').removeAttr("disabled");
+                    $('#btnFirstpage').attr("disabled", "disabled");
+                    $('#btnUppage').attr("disabled", "disabled");
+                }
+
+
+                $('#List table').show();
+
+
+            }
+
+            $("#SearchByTitle").click(function () {
+                if ($("#title").val() == "" || $("#title").val() == "请输入申请企业名称或组织机构代码") {
+                    alert("请输入申请企业名称或组织机构代码");
+                    return false;
+                }
+                title = $("#title").val();
+                currentpage = 1;
+                Query();
+
+            });
+
+            //首页
+            function GoToFirstPage() {
+                currentpage = 1;
+                Query();
+            }
+            //末页
+            function GoToLastPage() {
+                currentpage = maxPageNum;
+                Query();
+            }
+            //上一页
+            function GoToUpPage() {
+                if (currentpage != 1) {
+                    currentpage--;
+                    Query();
+                }
+            }
+            //下一页
+            function GoToDownPage() {
+                if (currentpage < maxPageNum) {
+                    currentpage++;
+                    Query();
+                }
+
+            }
+        })
+
+       
+    })(jQuery)
+
+   
+</script>
+
+
+

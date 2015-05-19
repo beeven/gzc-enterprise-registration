@@ -1,0 +1,44 @@
+body .main {
+    width: 715px;
+    height: 350px;
+    /*border: 1px solid #ccc;*/
+}
+
+.jumbotron {
+    text-align: center;
+    padding-left: 100px;
+    padding-right: 100px;
+    background-color: transparent;
+}
+
+.jumbotron h2 {
+    font-family: 微软雅黑,arial;
+    margin-bottom: 40px;
+}
+
+.jumbotron .lead {
+    font-size: 18px;
+}
+
+.jumbotron .btn-download {
+    padding: 14px 24px;
+    font-size: 21px;
+}
+
+.jumbotron .extra {
+    font-size: 15px;
+    font-family: sim-sun;
+    color: #888;
+    text-decoration: underline;
+}
+
+.modal-body ol {
+    text-align: left;
+}
+.modal-body li {
+    padding-top: 10px;
+}
+
+.modal-footer {
+    text-align: center;
+}

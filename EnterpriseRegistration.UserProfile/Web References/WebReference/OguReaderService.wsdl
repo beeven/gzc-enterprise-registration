@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://10.53.1.162" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://10.53.1.162" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://10.53.1.162">
+      <s:element name="GetOrganizationChildren">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:ViewCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="orgValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="orgCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="listObjCategories" type="tns:ListObjectCategories" />
+            <s:element minOccurs="1" maxOccurs="1" name="objectStatusCategories" type="tns:ObjectStatusCategories" />
+            <s:element minOccurs="1" maxOccurs="1" name="orgDepth" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="orgRank" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userRank" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="orgType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="orgClass" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="ViewCategory">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="None" />
+              <s:enumeration value="ViewCode" />
+              <s:enumeration value="ViewGuid" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:simpleType name="OrganizationCategory">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="OrgGuid" />
+          <s:enumeration value="OrgOriginalSort" />
+          <s:enumeration value="OrgAllPathName" />
+          <s:enumeration value="OrgGlobalSort" />
+          <s:enumeration value="OrgCustomsCode" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="ListObjectCategories">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="None" />
+              <s:enumeration value="Organizations" />
+              <s:enumeration value="Users" />
+              <s:enumeration value="Groups" />
+              <s:enumeration value="Sideline" />
+              <s:enumeration value="All" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:simpleType name="ObjectStatusCategories">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="None" />
+              <s:enumeration value="Common" />
+              <s:enumeration value="DirectLogic" />
+              <s:enumeration value="ConjunctOrgLogic" />
+              <s:enumeration value="ConjunctUserLogic" />
+              <s:enumeration value="All" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:element name="GetOrganizationChildrenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrganizationChildrenResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOuView">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="viewValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:ViewCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOuViewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOuViewResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetObjectsDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:ViewCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="objValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="objcetCategory" type="tns:ObjectCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrgValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="parentOrgCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="ObjectCategory">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="OrgGuid" />
+          <s:enumeration value="OrgOriginalSort" />
+          <s:enumeration value="OrgAllPathName" />
+          <s:enumeration value="OrgGlobalSort" />
+          <s:enumeration value="OrgCustomsCode" />
+          <s:enumeration value="UserGuid" />
+          <s:enumeration value="UserOriginalSort" />
+          <s:enumeration value="UserAllPathName" />
+          <s:enumeration value="UserGlobalSort" />
+          <s:enumeration value="UserIdentity" />
+          <s:enumeration value="GroupGuid" />
+          <s:enumeration value="GroupOriginalSort" />
+          <s:enumeration value="GroupAllPathName" />
+          <s:enumeration value="GroupGlobalSort" />
+          <s:enumeration value="Guid" />
+          <s:enumeration value="OriginalSort" />
+          <s:enumeration value="AllPathName" />
+          <s:enumeration value="GlobalSort" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetObjectsDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetObjectsDetailResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryOGUByCondition">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="viewValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:ViewCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="orgValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="orgCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="objValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isFuzzy" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="isFirstPerson" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="orgRank" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userRank" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="depth" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="listObjCategories" type="tns:ListObjectCategories" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryOGUByConditionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryOGUByConditionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersInGroups">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:ViewCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="groupValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="groupCategory" type="tns:GroupCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="userRank" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="objectStatusCategories" type="tns:ObjectStatusCategories" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="GroupCategory">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="GroupGuid" />
+          <s:enumeration value="GroupOriginalSort" />
+          <s:enumeration value="GroupAllPathName" />
+          <s:enumeration value="GroupGlobalSort" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetUsersInGroupsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersInGroupsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGroupsOfUsers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:ViewCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="userValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userCategory" type="tns:UserCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrgValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="parentOrgCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="objectStatusCategories" type="tns:ObjectStatusCategories" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="UserCategory">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="UserGuid" />
+          <s:enumeration value="UserOriginalSort" />
+          <s:enumeration value="UserAllPathName" />
+          <s:enumeration value="UserGlobalSort" />
+          <s:enumeration value="UserIdentity" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetGroupsOfUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGroupsOfUsersResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRootDepartment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:ViewCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRootDepartmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRootDepartmentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckPwd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="identityName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="identityType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckPwdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckPwdResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSubjectionCustoms">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:ViewCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="objValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="objCategory" type="tns:ObjectCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrgValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="parentOrgCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSubjectionCustomsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSubjectionCustomsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDirectCustoms">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:ViewCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="objValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="objCategory" type="tns:ObjectCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrgValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="parentOrgCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDirectCustomsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDirectCustomsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetViewInfoByUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userCategory" type="tns:UserCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="isIncludeDisabledViews" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetViewInfoByUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetViewInfoByUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomsCodeByUserPath">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserPath" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomsCodeByUserPathResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCustomsCodeByUserPathResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetOrganizationChildrenSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrganizationChildren" />
+  </wsdl:message>
+  <wsdl:message name="GetOrganizationChildrenSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrganizationChildrenResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOuViewSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOuView" />
+  </wsdl:message>
+  <wsdl:message name="GetOuViewSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOuViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetObjectsDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetObjectsDetail" />
+  </wsdl:message>
+  <wsdl:message name="GetObjectsDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetObjectsDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryOGUByConditionSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryOGUByCondition" />
+  </wsdl:message>
+  <wsdl:message name="QueryOGUByConditionSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryOGUByConditionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersInGroupsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersInGroups" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersInGroupsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersInGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupsOfUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGroupsOfUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupsOfUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGroupsOfUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRootDepartmentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRootDepartment" />
+  </wsdl:message>
+  <wsdl:message name="GetRootDepartmentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRootDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckPwdSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckPwd" />
+  </wsdl:message>
+  <wsdl:message name="CheckPwdSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckPwdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSubjectionCustomsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSubjectionCustoms" />
+  </wsdl:message>
+  <wsdl:message name="GetSubjectionCustomsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSubjectionCustomsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectCustomsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDirectCustoms" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectCustomsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDirectCustomsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetViewInfoByUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetViewInfoByUser" />
+  </wsdl:message>
+  <wsdl:message name="GetViewInfoByUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetViewInfoByUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomsCodeByUserPathSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCustomsCodeByUserPath" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomsCodeByUserPathSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCustomsCodeByUserPathResponse" />
+  </wsdl:message>
+  <wsdl:portType name="OguReaderServiceSoap">
+    <wsdl:operation name="GetOrganizationChildren">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">按照一定的查询条件查询系统中的数据对象</wsdl:documentation>
+      <wsdl:input message="tns:GetOrganizationChildrenSoapIn" />
+      <wsdl:output message="tns:GetOrganizationChildrenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOuView">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询视角对象</wsdl:documentation>
+      <wsdl:input message="tns:GetOuViewSoapIn" />
+      <wsdl:output message="tns:GetOuViewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectsDetail">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取指定对象的详细属性数据</wsdl:documentation>
+      <wsdl:input message="tns:GetObjectsDetailSoapIn" />
+      <wsdl:output message="tns:GetObjectsDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryOGUByCondition">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">按照不同的要求查询系统中的所有符合条件的数据</wsdl:documentation>
+      <wsdl:input message="tns:QueryOGUByConditionSoapIn" />
+      <wsdl:output message="tns:QueryOGUByConditionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInGroups">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取指定人员组中的所有成员（注意其中逻辑删除的数据对象）</wsdl:documentation>
+      <wsdl:input message="tns:GetUsersInGroupsSoapIn" />
+      <wsdl:output message="tns:GetUsersInGroupsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupsOfUsers">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取指定用户所从属的"人员组"集合</wsdl:documentation>
+      <wsdl:input message="tns:GetGroupsOfUsersSoapIn" />
+      <wsdl:output message="tns:GetGroupsOfUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRootDepartment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取系统指定的根部门对象</wsdl:documentation>
+      <wsdl:input message="tns:GetRootDepartmentSoapIn" />
+      <wsdl:output message="tns:GetRootDepartmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckPwd">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">验证人员登录名和密码是否正确</wsdl:documentation>
+      <wsdl:input message="tns:CheckPwdSoapIn" />
+      <wsdl:output message="tns:CheckPwdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectionCustoms">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">依据直属海关属性获取该直属海关辖的所有单位</wsdl:documentation>
+      <wsdl:input message="tns:GetSubjectionCustomsSoapIn" />
+      <wsdl:output message="tns:GetSubjectionCustomsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectCustoms">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">依据直属海关属性获取该直属海关辖的隶属海关</wsdl:documentation>
+      <wsdl:input message="tns:GetDirectCustomsSoapIn" />
+      <wsdl:output message="tns:GetDirectCustomsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetViewInfoByUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据人员GUID获取视角信息</wsdl:documentation>
+      <wsdl:input message="tns:GetViewInfoByUserSoapIn" />
+      <wsdl:output message="tns:GetViewInfoByUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomsCodeByUserPath">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据人员路径获取关区代码</wsdl:documentation>
+      <wsdl:input message="tns:GetCustomsCodeByUserPathSoapIn" />
+      <wsdl:output message="tns:GetCustomsCodeByUserPathSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OguReaderServiceSoap" type="tns:OguReaderServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetOrganizationChildren">
+      <soap:operation soapAction="http://10.53.1.162/GetOrganizationChildren" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOuView">
+      <soap:operation soapAction="http://10.53.1.162/GetOuView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectsDetail">
+      <soap:operation soapAction="http://10.53.1.162/GetObjectsDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryOGUByCondition">
+      <soap:operation soapAction="http://10.53.1.162/QueryOGUByCondition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInGroups">
+      <soap:operation soapAction="http://10.53.1.162/GetUsersInGroups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupsOfUsers">
+      <soap:operation soapAction="http://10.53.1.162/GetGroupsOfUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRootDepartment">
+      <soap:operation soapAction="http://10.53.1.162/GetRootDepartment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPwd">
+      <soap:operation soapAction="http://10.53.1.162/CheckPwd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectionCustoms">
+      <soap:operation soapAction="http://10.53.1.162/GetSubjectionCustoms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectCustoms">
+      <soap:operation soapAction="http://10.53.1.162/GetDirectCustoms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewInfoByUser">
+      <soap:operation soapAction="http://10.53.1.162/GetViewInfoByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomsCodeByUserPath">
+      <soap:operation soapAction="http://10.53.1.162/GetCustomsCodeByUserPath" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="OguReaderServiceSoap12" type="tns:OguReaderServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetOrganizationChildren">
+      <soap12:operation soapAction="http://10.53.1.162/GetOrganizationChildren" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOuView">
+      <soap12:operation soapAction="http://10.53.1.162/GetOuView" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectsDetail">
+      <soap12:operation soapAction="http://10.53.1.162/GetObjectsDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryOGUByCondition">
+      <soap12:operation soapAction="http://10.53.1.162/QueryOGUByCondition" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInGroups">
+      <soap12:operation soapAction="http://10.53.1.162/GetUsersInGroups" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupsOfUsers">
+      <soap12:operation soapAction="http://10.53.1.162/GetGroupsOfUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRootDepartment">
+      <soap12:operation soapAction="http://10.53.1.162/GetRootDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPwd">
+      <soap12:operation soapAction="http://10.53.1.162/CheckPwd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectionCustoms">
+      <soap12:operation soapAction="http://10.53.1.162/GetSubjectionCustoms" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectCustoms">
+      <soap12:operation soapAction="http://10.53.1.162/GetDirectCustoms" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewInfoByUser">
+      <soap12:operation soapAction="http://10.53.1.162/GetViewInfoByUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomsCodeByUserPath">
+      <soap12:operation soapAction="http://10.53.1.162/GetCustomsCodeByUserPath" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OguReaderService">
+    <wsdl:port name="OguReaderServiceSoap" binding="tns:OguReaderServiceSoap">
+      <soap:address location="http://10.53.1.162/GZCheckService/OguReaderService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="OguReaderServiceSoap12" binding="tns:OguReaderServiceSoap12">
+      <soap12:address location="http://10.53.1.162/GZCheckService/OguReaderService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

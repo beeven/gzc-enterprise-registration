@@ -1,0 +1,246 @@
+﻿@model EnterpriseRegistration.Web.Models.QueryData
+
+
+<table class="bordered table_content" >
+    <thead>
+        <tr>
+            <th style="width:33%;">企业名称</th>
+            <th style="width:17%;">接收时间</th>
+            <th style="width:9%;">是否回复</th>
+            <th style="width:17%;">回复时间</th>
+            <th style="width:7%;">备案号</th>
+            <th style="width:17%;">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model.ListItem)
+            {
+            <tr class="trMail"  trid="@item.regInfo.Id">
+                <td class="EnterpriseName" title="@item.registration.EnterPriseName"><div>@item.registration.EnterPriseName</div></td>
+                <td>@item.regInfo.ReceivedDate.ToString()</td>
+                @if (item.regInfo.IsReplied)
+                {
+                    <td class="replied">是</td>
+                }
+                else
+                {
+                    <td>否</td>
+                }
+                <td>@item.regInfo.RepliedDate.ToString()</td>
+                 <td>  @if (item.regInfo.isGetEntAccess == 1)
+                        {
+                            if (item.regInfo.isRecordPass == 0)
+                            {
+                               <input type="button"  class="unpassA"  value="未通过备案↓↓" />
+                            }
+                            else{
+                                @item.regInfo.RecordNum
+                            }
+                        }
+
+                    </td>
+                <td contact="@item.custom.Contact" tel="@item.custom.Tel">
+                    @if (item.regInfo.isGetEntAccess == 0)
+                    {
+                        <input type="button" class="GetEntAccess" inputid="@item.regInfo.Id"  to="@item.regInfo.From"    value="申请备案" />
+                    }
+                    else if (!item.regInfo.IsReplied)
+                    {
+                        if (item.regInfo.isRecordPass == 1)
+                        {
+                            <input type="button" onclick="copyValue('@item.regInfo.Id ','@item.registration.EnterPriseName ')"  value="拟稿" />
+                            <input type="button"  class="Pass" inputid="@item.regInfo.Id" to="@item.regInfo.From"  record="@item.regInfo.RecordNum" subject="@item.regInfo.Subject"   value="通过" />
+                            <input type="button"  class="Reback" inputid="@item.regInfo.Id" to="@item.regInfo.From" subject="@item.regInfo.Subject"  value="退回" />
+                           
+                        }
+                        else
+                        {
+                            <input type="button"  class="Reback"  inputid="@item.regInfo.Id" to="@item.regInfo.From" subject="@item.regInfo.Subject"   value="退回" />
+                        }
+                    }
+                   
+                </td>
+            </tr>
+            <tr trid="record_@item.regInfo.Id" style="display:none;">
+                <td colspan="6">
+                  @Html.Raw(item.regInfo.RecordNum)
+                </td>
+            </tr>
+            }
+        }
+     </tbody>
+</table>
+<div  id="showReply" >
+ <div class="ShowContent">
+    回复内容：
+     <textarea id="txtContent" style="width:98%;height:60%;" >
+       
+    </textarea>
+    <div style="text-align:center;"><input type="button" class="btn btn-default"   value="确认回复" id="sureReply"   />&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-default"  value="取消" id="cancelReply" /></div>
+  
+     <input type="hidden" id="hid_replyId" value="" />
+     <input type="hidden" id="hid_to" value="" />
+      <input type="hidden" id="hid_subject" value="" />
+ </div>
+</div>
+<input id="hfCount" type="hidden" value="@Model.ListCount" />
+<script type="text/javascript">
+    (function ($) {
+        var sureurl = "";
+
+        jQuery(document).ready(function () {
+
+            jQuery('.GetEntAccess').click(function () {
+                var id = $(this).attr("inputid");
+                var to = $(this).attr("to");
+                jQuery.ajax({
+                    url: '@Url.Action("GetEntAccess", "RegInfoes")',
+                    type: 'POST',
+                    data: {
+                        "replyId": id,
+                        "to":to
+                    },
+                    success: function (result) {
+                        alert(result);
+                        location.reload();
+                    },
+                    cache: false
+                });
+            });
+
+            jQuery('.Pass').click(function () {
+                sureurl='@Url.Action("Pass", "RegInfoes")';
+                var id = $(this).attr("inputid");
+                var to = $(this).attr("to");
+                var subject = $(this).attr("subject");
+                var record = $(this).attr("record");
+                var contact=$(this).parent("td").attr("contact");
+                var tel=$(this).parent("td").attr("tel");
+                jQuery("#hid_replyId").val(id);
+                jQuery("#hid_to").val(to);
+                jQuery("#hid_subject").val(subject);
+                var txt = "您申请的备案已通过审核\n备案号 ：" + record+"\n";
+                txt+="海关联络员 ："+contact+" ； 联系电话 ："+tel+"\n";
+                jQuery("#txtContent").val(txt);
+                jQuery("#showReply").show();
+         
+
+                return;
+            });
+
+
+            jQuery('.Reback').click(function () {
+                sureurl = '@Url.Action("Reback", "RegInfoes")';
+                var id = $(this).attr("inputid");
+                var to = $(this).attr("to");
+                var subject = $(this).attr("subject");
+                jQuery("#hid_replyId").val(id);
+                jQuery("#hid_to").val(to);
+                jQuery("#hid_subject").val(subject);
+                var txt = "您申请的备案未通过审核\n原因为："+ $(this).parent().parent().next("tr").children("td").text();
+                jQuery("#txtContent").val(txt);
+                jQuery("#showReply").show();
+            });
+
+
+
+            jQuery(".table_content tbody tr").click(function (item) {
+                if (item.currentTarget.className!="trMail") {
+                    return false;
+                }
+                if (item.target.nodeName.toLowerCase() != "input") {
+                    var id = jQuery(this).attr("trid");
+                    window.location = '@Url.Action("Index", "MailDetail")?id=' + id;
+                }
+            })
+
+            jQuery("#sureReply").click(function () {
+                var replyId = jQuery("#hid_replyId").val();
+                var to = jQuery("#hid_to").val();
+                var subject = jQuery("#hid_subject").val();
+                var sContent = jQuery("#txtContent").val();
+                if (sContent == "") {
+                    alert("请输入退回理由！");
+                    return;
+                }
+                $.ajax({
+                    url: sureurl,
+                    type: 'POST',
+                    data: {
+                        "replyId": replyId,
+                        "content": escape(sContent),
+                        "to": escape(to),
+                        "subject": escape(subject)
+                    },
+                    success: function (result) {
+                        jQuery("#showReply").css("display", "none");
+                        alert(result);
+                        location.reload();
+                    },
+                    error: function (data, msg, tt) {
+                        jQuery("#showReply").css("display", "none");
+                        alert(tt);
+                    },
+                    cache: false
+            });
+
+        })
+
+            jQuery("#cancelReply").click(function () {
+                jQuery("#showReply").css("display", "none");
+                jQuery("#txtContent").val("");
+            })
+
+            jQuery(".unpassA").click(function () {
+                var tr = jQuery(this).parent().parent();
+                var newid = "record_" + jQuery(tr).attr("trid");
+                if (jQuery(this).val() == "未通过备案↓↓") {
+                    jQuery(this).val("未通过备案↑↑");
+                    jQuery("tr[trid='" + newid + "']").show();
+
+                }
+                else {
+                    jQuery(this).val("未通过备案↓↓");
+                    jQuery("tr[trid='" + newid + "']").hide();
+                }
+            })
+
+
+            jQuery(function () {
+                jQuery(".replied").parent().children("td").css("color", "blue");
+            })
+        })
+
+
+    })(jQuery);
+     
+    copyValue = function (id,enterpriseName) {
+        if (isIE()) {
+            var boardData =enterpriseName+"地址为：http://"+location.hostname+":"+location.port+ '@Url.Action("Index", "MailDetail")?id=' + id;
+
+            clipboardData.setData("Text",boardData);
+
+            alert("您已成功复制了该申请邮件地址\n可直接粘贴到综平拟稿内容框中");
+            
+            window.open("http://10.53.1.142/FormWorkflow/Cooperation/Pages/FormPage/CoFrontController.aspx?type=QYBAYWLXD&wfRangeCode=InnerCustoms&parent=&parentFormId=&relationType=&relation=");
+        }
+        else
+        {
+            alert("此版本不支持此功能，请点击进入详细页复制地址！");
+            window.open("http://10.53.1.142/FormWorkflow/Cooperation/Pages/FormPage/CoFrontController.aspx?type=QYBAYWLXD&wfRangeCode=InnerCustoms&parent=&parentFormId=&relationType=&relation=");
+        }
+    };
+    
+    function isIE() {
+        if (window.ActiveXObject) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+   
+</script>

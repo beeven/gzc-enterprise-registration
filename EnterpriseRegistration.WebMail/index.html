@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/knockout-3.2.0.js"></script>
+    <title>广州海关跨境电子商务企业备案申请指引</title>
+    <style type="text/css">
+        body {
+    width: 800px;
+    margin: 40px auto;
+    font-family: 'trebuchet MS', 'Lucida sans', Arial;
+    font-size: 14px;
+    color: #444;
+}table {
+    *border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0;
+    width: 100%;    
+}
+        .bordered {
+    border-spacing: 0;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 1px #ccc  ; 
+    -moz-box-shadow: 0 1px 1px #ccc; 
+    border: solid #ccc 1px;
+    box-shadow: 0 1px 1px #ccc;    
+    width:100%;  
+    display:none;
+}
+.bordered td, .bordered th {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;    
+}
+
+.bordered th {
+    background-color: #dce9f9;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#dce9f9));
+    background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:    -moz-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:     -ms-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:      -o-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:         linear-gradient(top, #ebf3fc, #dce9f9);
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; 
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;  
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;        
+    border-top: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5); 
+}
+        .roster {
+            width:9px;
+            height:9px;
+            background-image:url("down.png");
+        }
+        .IndentStrip {
+            width:300px;
+            margin-left:auto;
+            margin-right:auto;
+            background-color: #478ad3;
+            cursor:pointer;
+        }
+
+        .IndentStrip:hover {
+            width:300px;
+            margin-left:auto;
+            margin-right:auto;
+            background-color: #76a5de;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="main container-fluid">
+        <div class="jumbotron">
+            <h2>跨境电子商务企业备案申请</h2>
+            <p class="lead">
+                需要申请的企业请下载表格，填写完毕后将申请表以及相关附件，
+                以电子邮件附件形式发送至业务邮箱
+            </p>
+            <p class="lead mail">
+                <a href="mailto:GZKJQY@customs.gov.cn">GZKJQY@customs.gov.cn</a>
+            </p>
+            <p class="lead">
+                我们将以邮件方式反馈业务受理情况
+            </p>
+            <p>
+                <a class="btn btn-lg btn-primary btn-download" href="#instruction-popout" role="button" data-toggle="modal">下载申请表格</a>
+                <br />
+            </p>
+        </div>
+        <div class="row">
+        </div>
+    </div>
+    <div class="modal fade" id="instruction-popout" tabindex="-1" role="dialog" aria-labelledby="instructionLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="instructionLabel">申请指引</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <ol> 
+                            <li>电子商务经营企业、物流企业、支付企业（以下简称企业）登录本网站，下载《广州海关跨境电子商务企业备案申请表》（以下简称《申请表》）。
+                            </li>
+                            <li>按海关要求，填写《申请表》，准备相关证件扫描件，并通过电子邮件将《申请表》及证件扫描件发送至（海关邮箱地址 GZKJQY@customs.gov.cn）。
+                            </li>
+                            <li>海关受理企业备案申请，通过电子邮件告知企业已受理。
+                            </li>
+                            <li>海关审核《申请表》及随附证件，必要时可通知企业提供证件正本供核对，审核通过的，通过电子邮件告知企业已备案，并反馈企业备案号；审核不通过的，由受理的现场海关直接告知企业审核不通过的原因。
+                            </li>
+                            <li>企业收到海关反馈的企业备案号，说明备案成功，可在已开展跨境电子商务试点的现场海关开展业务。
+                            </li>
+                            <li>
+                                跨境电子商务企业备案申请表，以Word文档附件形式增加“申请理由及企业情况”，包括企业发展历史及当前经营状况、企业运作架构、与其他电商、物流、支付企业的合作情况，业务操作流程、服务地域范围等，物流企业还需要说明办公场所及监管仓库的准备情况。字数在2000字左右。
+                            </li>
+                        </ol>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-success" href="contents/registration.xls">已阅读，下载</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div style="text-align:center">
+        <div style="font-size: 18px;">
+        广州海关跨境贸易电子商务备案支付企业名单
+            </div><br />
+        <a class="btn btn-lg btn-primary btn-download" role="button" data-toggle="modal" onclick="Show()">企业名单<img src="Down16.png" style="padding-bottom:4px;"/></a>
+        </div>
+    <br />
+    <input id="hdFlag" type="hidden" value="0"/>
+    <table id="tabExcel" class="bordered">
+        <thead>
+            <tr>
+                <th style="width:50px">序号</th>
+                <th style="width:190px">企业名称</th>
+                <th style="width:60px">联系人</th>
+                <th style="width:70px">联系电话</th>
+                <th style="width:120px">邮箱</th>
+                <th style="width:110px">对接进度</th>
+            </tr>
+        </thead>
+        <tbody data-bind="template: { name: 'reservationTemplate', foreach: seats }"></tbody>
+    </table>
+    <script type="text/x-jquery-tmpl" id="reservationTemplate">
+        <tr>
+            <td ><span data-bind="text: Id"></span></td>
+            <td style="text-align:left"><span data-bind="text: EnterPriseName"></span></td>
+            <td ><span data-bind="text: Contact"></span></td>
+            <td ><span data-bind="text: Phone"></span></td>
+            <td ><span data-bind="text: Email"></span></td>
+            <td ><span data-bind="text: Progress"></span></td>
+        </tr>
+    </script>
+    <script type="text/javascript">
+        
+        var avali;
+
+        $.ajax({
+            url: 'ExcelHandler.ashx',
+            type: 'POST',
+            success: function (result) {
+                var avali = eval(result);
+                // alert(result);
+                var viewModel = {
+                    seats: ko.observableArray(avali),
+                };
+                ko.applyBindings(viewModel);
+            },
+            error: function (data, msg, tt) {
+                alert(tt);
+            },
+            cache: false
+        });
+
+        function Show() {
+            var Flag = $("#hdFlag").val();
+            if (Flag == 0) {
+                //var tab = $("#tabExcel").show();
+                $("#tabExcel").attr("display", "block").fadeTo(500, 1);
+                $("#hdFlag").val(1);
+                $("#btnRoster").val("收起名单");
+            } else {
+                //var tab = $("#tabExcel").hide();
+                $("#tabExcel").attr("display", "block").fadeTo(500, 0);
+                $("#hdFlag").val(0);
+                $("#btnRoster").val("展开名单");
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+﻿@model EnterpriseRegistration.Web.Models.Contact
+
+@{
+    ViewBag.Title = "跨境贸易电子商务企业备案申请";
+}
+
+<html>
+<head>
+    <title>跨境贸易电子商务企业备案申请</title>
+    <script src="../../Scripts/jquery-1.8.2.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link href="../../Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Common.css" />
+</head>
+<body>
+     @Html.Action("User", "RegInfoes")
+   @* <h2 style="text-align:center;">海关现场联系方式维护</h2>*@
+    <form  id="form1">
+        <div class="outerDiv">
+       @if (Model.customs != null)
+       {
+        <table class="bordered table_content">
+            <thead>
+            <tr>
+                <th>现场海关</th>
+                <th>关区代码</th>
+                <th>联络员</th>
+                <th>联系电话</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach (EnterpriseRegistration.Web.Models.WebCustom item in Model.customs)
+                {
+                    <tr>
+                    <td>@item.cust.CustomName</td>
+                    <td>@item.customCodes</td>
+                    @if (Model.codes.Contains(item.cust.CustomCode))
+                    {
+                    <td class="contact"><input  type="text" value="@item.cust.Contact"  /></td>
+                    <td class="tel"><input  type="text" value="@item.cust.Tel"  /></td>
+                    <td><input class="Modify" value="修改"  type="button" code="@item.cust.Id" contact="@item.cust.Contact" tel="@item.cust.Tel" /></td>
+                    }
+                    else
+                    {
+                        <td class="contact"><input  type="text" value="@item.cust.Contact" disabled="disabled"  /></td>
+                        <td class="tel"><input  type="text" value="@item.cust.Tel"  disabled="disabled"   /></td>
+                        <td></td>
+                    }
+                    </tr>
+                }
+            </tbody>
+        </table>
+       }
+       else
+       {
+           <div>暂无数据</div>
+       }
+            </div>
+        
+    </form>
+</body>
+</html>
+<script type="text/javascript">
+    (function ($) {
+        $(document).ready(function () {
+
+            $(".Modify").click(function () {
+                var contact = $(this).parent().prevAll(".contact").children("input").val()
+                var tel = $(this).parent().prevAll(".tel").children("input").val()
+                var contactOld = $(this).attr("contact");
+                var telOld = $(this).attr("tel");
+                if ((contact == contactOld && tel == telOld) || (contact == "" && typeof (contactOld) == "undefined" && tel == "" && typeof (telOld) == "undefined")) {
+                    alert("您未修改任何内容！");
+                    return;
+                }
+                var id = $(this).attr("code");
+                $.ajax({
+                    url: '@Url.Action("Update", "Contact")',
+                    type: 'post',
+                    data: {
+                        contact: contact,
+                        tel: tel,
+                        id:id
+                    },
+                    success: function (result) {
+                        alert(result);
+                        location.reload();
+                    },
+                    cache: false
+                });
+            })
+
+        })
+
+       
+    })(jQuery)
+
+   
+</script>
+

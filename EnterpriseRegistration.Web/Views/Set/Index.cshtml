@@ -1,0 +1,179 @@
+﻿@model EnterpriseRegistration.UserProfile.Models.RoleCollection
+
+@{
+    ViewBag.Title = "跨境贸易电子商务企业备案申请";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>跨境贸易电子商务企业备案申请</title>
+    <script src="../../Scripts/jquery-1.8.2.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link href="../../Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style type="text/css">
+        .LeftNav {
+            float:left;
+            max-width:30%;
+            min-width:20%;
+            padding-left:5%;
+        }
+
+        .LeftNav ul {
+            list-style:circle;
+            margin:0px;
+            border-top:1px solid #dedede;
+            width:100%;
+            border-radius: 10px;
+            border-bottom-right-radius:0px;
+            border-top-right-radius:0px;
+        }
+
+        .LeftLi {
+            margin:0px;
+            padding:10px 0px ;
+            text-align:left;
+            border-bottom:1px solid #dedede;
+            border-left:1px solid #dedede;
+            color:#111;
+            width:100%;
+            white-space:nowrap;
+            overflow:hidden;
+            border-radius: 10px;
+            border-bottom-right-radius:0px;
+            border-top-right-radius:0px;
+        }
+
+        .currentLi {
+            background:#aaa;
+            opacity:0.4;
+            filter:alpha(opacity=40);
+            color:#fff;
+        }
+
+        .RightContent {
+            float:left;
+            width:65%;
+        }
+
+        #list {
+            padding: 20px;
+            font-size: 18px;
+            border: 1px solid #dedede;
+            border-radius:15px;
+            border-top-left-radius:0px;
+        }
+
+        #list input {
+            width: 20px;
+            height: 20px;
+        }
+        #OperationDiv {
+            text-align:center;
+            margin-top: 20px;
+        }
+        #OperationDiv input {
+            padding:5px 10px;
+            background:#ccc;
+            color:white;
+            border:1px solid #ccc;
+            border-radius:5px;
+        }
+    </style>
+</head>
+<body>
+    <form class="" id="form1">
+         @Html.Action("User","RegInfoes")
+       
+        @*<h2 style="text-align:center;">主管海关权限设置</h2>*@
+        <div style="width:100%;">
+                @if (Model != null)
+                {
+                  <div class="LeftNav">
+                      <ul>
+                        @foreach (EnterpriseRegistration.UserProfile.Models.Role item in Model.Roles)
+                        {
+                            <li class="LeftLi" id="@item.RoleId">
+                               &nbsp;@item.RoleName (@item.RoleCode)
+                            </li>
+                        }
+                      </ul>
+                  </div>
+                  <div class="RightContent">
+                      <div id="list">
+                      </div>
+                      <div id="OperationDiv">
+                          <input id="selAll" type="button" value="全选" /> 
+                          <input id="delAll" type="button" value="全部取消" />
+                          <input id="submit" type="button" value="确认修改" />
+                      </div>
+                  </div>
+                }
+                else{
+                    <div>暂无角色可操作，请先添加角色！</div>
+                }   
+        </div>
+        
+        
+    </form>
+</body>
+</html>
+
+<script type="text/javascript">
+    (function ($) {
+        $(document).ready(function () {
+
+            $(".LeftLi").live("click", function (item) {
+                $(".LeftLi").removeClass("currentLi");
+                $(this).addClass("currentLi");
+                $("#list").html("Loading……");
+                var roleId = $(this).attr("id");
+                $.ajax({
+                    url: '@Url.Action("Query","Set")',
+                    data: {
+                        roleId: roleId
+                    },
+                    success: function (result) {
+                        $("#list").html(result);
+                    },
+                    cache:false
+                });
+            })
+
+            $("#selAll").click(function () {
+                $("#list input").attr("checked", true);
+            });
+
+            $("#delAll").click(function () {
+                $("#list input").attr("checked", false);
+            });
+
+            $("#submit").click(function () {
+                var customCode = $(".currentLi").attr("id");
+                var cRights = "";
+                $("#list input:checked").each(function (index,element) {
+                    cRights += $(element).attr("code") + ",";
+                });
+                $.ajax({
+                    url: '@Url.Action("Update","Set")',
+                    data: {
+                        customCode: customCode,
+                        cRights:cRights
+                    },
+                    success: function (result) {
+                        alert(result);
+                        location.reload();
+                    },
+                    cache: false
+                });
+
+            });
+
+            $(".LeftLi").eq(0).click();
+        })
+    }
+        )(jQuery)
+</script>

@@ -1,0 +1,1170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="10.53.1.162" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="10.53.1.162" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="10.53.1.162">
+      <s:element name="GetApplications">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="AccreditCategory">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="None" />
+              <s:enumeration value="Guid" />
+              <s:enumeration value="Code" />
+              <s:enumeration value="Level" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:element name="GetApplicationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetApplicationsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFunctionsInApplication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="funcValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="funcCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="funcCategories" type="tns:FunctionCategories" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="FunctionCategories">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="None" />
+              <s:enumeration value="Inside" />
+              <s:enumeration value="Exterior" />
+              <s:enumeration value="All" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:element name="GetFunctionsInApplicationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFunctionsInApplicationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChildrenInRoles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrganizationValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="roleValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="delegationCategories" type="tns:DelegationCategories" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="OrganizationCategory">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="OrgGuid" />
+          <s:enumeration value="OrgOriginalSort" />
+          <s:enumeration value="OrgAllPathName" />
+          <s:enumeration value="OrgGlobalSort" />
+          <s:enumeration value="OrgCustomsCode" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DelegationCategories">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="None" />
+              <s:enumeration value="Original" />
+              <s:enumeration value="Delegated" />
+              <s:enumeration value="All" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:element name="GetChildrenInRolesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetChildrenInRolesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRolesByFunction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="funcValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="funcCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRolesByFunctionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRolesByFunctionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersByFunction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrganizationValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="funcValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="funcCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="delegationCategories" type="tns:DelegationCategories" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersByFunctionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersByFunctionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsUserInRoles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userCategory" type="tns:UserCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrganizationValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="roleValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="delegationCategories" type="tns:DelegationCategories" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="UserCategory">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="UserGuid" />
+          <s:enumeration value="UserOriginalSort" />
+          <s:enumeration value="UserAllPathName" />
+          <s:enumeration value="UserGlobalSort" />
+          <s:enumeration value="UserIdentity" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="IsUserInRolesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsUserInRolesResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsUserInAllRoles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userCategory" type="tns:UserCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrganizationValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="roleValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="delegationCategories" type="tns:DelegationCategories" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsUserInAllRolesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsUserInAllRolesResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoesUserHasPermissions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userCategory" type="tns:UserCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrganizationValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="funcValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="funcCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="delegationCategories" type="tns:DelegationCategories" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoesUserHasPermissionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DoesUserHasPermissionsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoesUserHasAllPermissions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userCategory" type="tns:UserCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrganizationValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="funcValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="funcCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="delegationCategories" type="tns:DelegationCategories" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoesUserHasAllPermissionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DoesUserHasAllPermissionsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRolesOfUserInViewApplication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userCategory" type="tns:UserCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrganizationValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleCategories" type="tns:RoleCategories" />
+            <s:element minOccurs="1" maxOccurs="1" name="delegationCategories" type="tns:DelegationCategories" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="RoleCategories">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="None" />
+              <s:enumeration value="System" />
+              <s:enumeration value="Application" />
+              <s:enumeration value="All" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:element name="GetRolesOfUserInViewApplicationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRolesOfUserInViewApplicationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOUScopesOfUserRoles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userCategory" type="tns:UserCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrganizationValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="roleValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="delegationCategories" type="tns:DelegationCategories" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOUScopesOfUserRolesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOUScopesOfUserRolesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetsBusinessScopesOfUserRoles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userCategory" type="tns:UserCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrganizationValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="roleValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="delegationCategories" type="tns:DelegationCategories" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetsBusinessScopesOfUserRolesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetsBusinessScopesOfUserRolesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTimeScopesOfUserRoles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userCategory" type="tns:UserCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrganizationValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="roleValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="delegationCategories" type="tns:DelegationCategories" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTimeScopesOfUserRolesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTimeScopesOfUserRolesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOuScopesOfUserFunctionsInViewApplication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userCategory" type="tns:UserCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrganizationValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="funcValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="funcCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="delegationCategories" type="tns:DelegationCategories" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOuScopesOfUserFunctionsInViewApplicationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOuScopesOfUserFunctionsInViewApplicationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBusinessScopesByUserFunctionsInViewApplication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userCategory" type="tns:UserCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrganizationValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="funcValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="funcCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="delegationCategories" type="tns:DelegationCategories" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBusinessScopesByUserFunctionsInViewApplicationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBusinessScopesByUserFunctionsInViewApplicationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTimeScopesByUserFunctionsInViewApplication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userCategory" type="tns:UserCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrganizationValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="funcValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="funcCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="delegationCategories" type="tns:DelegationCategories" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTimeScopesByUserFunctionsInViewApplicationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTimeScopesByUserFunctionsInViewApplicationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsAdminUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userCategory" type="tns:UserCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrganizationValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="delegationCategories" type="tns:DelegationCategories" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsAdminUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsAdminUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBusinessScopes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="scopeValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="scopeValueCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBusinessScopesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBusinessScopesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTimeScopes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="scopeValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="scopeValueCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTimeScopesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTimeScopesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFunctionsOfUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userCategory" type="tns:UserCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentOrganizationValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationCategory" type="tns:OrganizationCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="functionCategories" type="tns:FunctionCategories" />
+            <s:element minOccurs="1" maxOccurs="1" name="delegationCategories" type="tns:DelegationCategories" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFunctionsOfUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFunctionsOfUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRoles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="roleValues" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="appValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="appCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="viewCategory" type="tns:AccreditCategory" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleCategories" type="tns:RoleCategories" />
+            <s:element minOccurs="0" maxOccurs="1" name="extraAttributes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRolesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRolesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetApplicationsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetApplications" />
+  </wsdl:message>
+  <wsdl:message name="GetApplicationsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetApplicationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFunctionsInApplicationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFunctionsInApplication" />
+  </wsdl:message>
+  <wsdl:message name="GetFunctionsInApplicationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFunctionsInApplicationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetChildrenInRolesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetChildrenInRoles" />
+  </wsdl:message>
+  <wsdl:message name="GetChildrenInRolesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetChildrenInRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRolesByFunctionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRolesByFunction" />
+  </wsdl:message>
+  <wsdl:message name="GetRolesByFunctionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRolesByFunctionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersByFunctionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersByFunction" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersByFunctionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersByFunctionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsUserInRolesSoapIn">
+    <wsdl:part name="parameters" element="tns:IsUserInRoles" />
+  </wsdl:message>
+  <wsdl:message name="IsUserInRolesSoapOut">
+    <wsdl:part name="parameters" element="tns:IsUserInRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsUserInAllRolesSoapIn">
+    <wsdl:part name="parameters" element="tns:IsUserInAllRoles" />
+  </wsdl:message>
+  <wsdl:message name="IsUserInAllRolesSoapOut">
+    <wsdl:part name="parameters" element="tns:IsUserInAllRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="DoesUserHasPermissionsSoapIn">
+    <wsdl:part name="parameters" element="tns:DoesUserHasPermissions" />
+  </wsdl:message>
+  <wsdl:message name="DoesUserHasPermissionsSoapOut">
+    <wsdl:part name="parameters" element="tns:DoesUserHasPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DoesUserHasAllPermissionsSoapIn">
+    <wsdl:part name="parameters" element="tns:DoesUserHasAllPermissions" />
+  </wsdl:message>
+  <wsdl:message name="DoesUserHasAllPermissionsSoapOut">
+    <wsdl:part name="parameters" element="tns:DoesUserHasAllPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRolesOfUserInViewApplicationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRolesOfUserInViewApplication" />
+  </wsdl:message>
+  <wsdl:message name="GetRolesOfUserInViewApplicationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRolesOfUserInViewApplicationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOUScopesOfUserRolesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOUScopesOfUserRoles" />
+  </wsdl:message>
+  <wsdl:message name="GetOUScopesOfUserRolesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOUScopesOfUserRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetsBusinessScopesOfUserRolesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetsBusinessScopesOfUserRoles" />
+  </wsdl:message>
+  <wsdl:message name="GetsBusinessScopesOfUserRolesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetsBusinessScopesOfUserRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTimeScopesOfUserRolesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTimeScopesOfUserRoles" />
+  </wsdl:message>
+  <wsdl:message name="GetTimeScopesOfUserRolesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTimeScopesOfUserRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOuScopesOfUserFunctionsInViewApplicationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOuScopesOfUserFunctionsInViewApplication" />
+  </wsdl:message>
+  <wsdl:message name="GetOuScopesOfUserFunctionsInViewApplicationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOuScopesOfUserFunctionsInViewApplicationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBusinessScopesByUserFunctionsInViewApplicationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBusinessScopesByUserFunctionsInViewApplication" />
+  </wsdl:message>
+  <wsdl:message name="GetBusinessScopesByUserFunctionsInViewApplicationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBusinessScopesByUserFunctionsInViewApplicationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTimeScopesByUserFunctionsInViewApplicationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTimeScopesByUserFunctionsInViewApplication" />
+  </wsdl:message>
+  <wsdl:message name="GetTimeScopesByUserFunctionsInViewApplicationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTimeScopesByUserFunctionsInViewApplicationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsAdminUserSoapIn">
+    <wsdl:part name="parameters" element="tns:IsAdminUser" />
+  </wsdl:message>
+  <wsdl:message name="IsAdminUserSoapOut">
+    <wsdl:part name="parameters" element="tns:IsAdminUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBusinessScopesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBusinessScopes" />
+  </wsdl:message>
+  <wsdl:message name="GetBusinessScopesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBusinessScopesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTimeScopesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTimeScopes" />
+  </wsdl:message>
+  <wsdl:message name="GetTimeScopesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTimeScopesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFunctionsOfUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFunctionsOfUser" />
+  </wsdl:message>
+  <wsdl:message name="GetFunctionsOfUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFunctionsOfUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRolesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRoles" />
+  </wsdl:message>
+  <wsdl:message name="GetRolesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRolesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AccreditReaderServiceSoap">
+    <wsdl:operation name="GetApplications">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获得指定应用或所有应用系统的基本信息</wsdl:documentation>
+      <wsdl:input message="tns:GetApplicationsSoapIn" />
+      <wsdl:output message="tns:GetApplicationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFunctionsInApplication">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询指定应用系统中，指定类别的指定功能或所有功能</wsdl:documentation>
+      <wsdl:input message="tns:GetFunctionsInApplicationSoapIn" />
+      <wsdl:output message="tns:GetFunctionsInApplicationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChildrenInRoles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询指定部门下，指定应用系统中，指定视角下，指定角色的所有被授权对象</wsdl:documentation>
+      <wsdl:input message="tns:GetChildrenInRolesSoapIn" />
+      <wsdl:output message="tns:GetChildrenInRolesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesByFunction">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查找指定应用系统中，指定视角下，具有指定功能的角色</wsdl:documentation>
+      <wsdl:input message="tns:GetRolesByFunctionSoapIn" />
+      <wsdl:output message="tns:GetRolesByFunctionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByFunction">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询指定部门范围下，指定应用系统中，指定视角下，拥有指定功能的所有人员</wsdl:documentation>
+      <wsdl:input message="tns:GetUsersByFunctionSoapIn" />
+      <wsdl:output message="tns:GetUsersByFunctionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInRoles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">判断人员是否在指定应用系统的指定视角下的指定角色中(有一个即可)</wsdl:documentation>
+      <wsdl:input message="tns:IsUserInRolesSoapIn" />
+      <wsdl:output message="tns:IsUserInRolesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInAllRoles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">判断人员是否在指定应用系统的指定视角下的指定角色中(拥有全部角色)</wsdl:documentation>
+      <wsdl:input message="tns:IsUserInAllRolesSoapIn" />
+      <wsdl:output message="tns:IsUserInAllRolesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DoesUserHasPermissions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询指定人员，在指定应用系统中，指定视角下，是否拥有指定的功能权限(有一个即可)</wsdl:documentation>
+      <wsdl:input message="tns:DoesUserHasPermissionsSoapIn" />
+      <wsdl:output message="tns:DoesUserHasPermissionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DoesUserHasAllPermissions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询指定人员，在指定应用系统中，是否拥有指定的功能权限(拥有全部功能)</wsdl:documentation>
+      <wsdl:input message="tns:DoesUserHasAllPermissionsSoapIn" />
+      <wsdl:output message="tns:DoesUserHasAllPermissionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesOfUserInViewApplication">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询指定用户，在指定应用系统中指定视角下所拥有的角色</wsdl:documentation>
+      <wsdl:input message="tns:GetRolesOfUserInViewApplicationSoapIn" />
+      <wsdl:output message="tns:GetRolesOfUserInViewApplicationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOUScopesOfUserRoles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询指定人员，在指定应用系统，指定角色下所拥有的机构服务范围</wsdl:documentation>
+      <wsdl:input message="tns:GetOUScopesOfUserRolesSoapIn" />
+      <wsdl:output message="tns:GetOUScopesOfUserRolesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetsBusinessScopesOfUserRoles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询指定人员，在指定应用系统，指定角色下所拥有的业务服务范围</wsdl:documentation>
+      <wsdl:input message="tns:GetsBusinessScopesOfUserRolesSoapIn" />
+      <wsdl:output message="tns:GetsBusinessScopesOfUserRolesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeScopesOfUserRoles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询指定人员，在指定应用系统，指定角色下所拥有的时间服务范围</wsdl:documentation>
+      <wsdl:input message="tns:GetTimeScopesOfUserRolesSoapIn" />
+      <wsdl:output message="tns:GetTimeScopesOfUserRolesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOuScopesOfUserFunctionsInViewApplication">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询指定人员，在指定应用系统，指定功能中所拥有的机构服务范围</wsdl:documentation>
+      <wsdl:input message="tns:GetOuScopesOfUserFunctionsInViewApplicationSoapIn" />
+      <wsdl:output message="tns:GetOuScopesOfUserFunctionsInViewApplicationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessScopesByUserFunctionsInViewApplication">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询指定人员，在指定应用系统，指定功能中所拥有的业务服务范围</wsdl:documentation>
+      <wsdl:input message="tns:GetBusinessScopesByUserFunctionsInViewApplicationSoapIn" />
+      <wsdl:output message="tns:GetBusinessScopesByUserFunctionsInViewApplicationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeScopesByUserFunctionsInViewApplication">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询指定人员，在指定应用系统，指定功能中所拥有的时间服务范围</wsdl:documentation>
+      <wsdl:input message="tns:GetTimeScopesByUserFunctionsInViewApplicationSoapIn" />
+      <wsdl:output message="tns:GetTimeScopesByUserFunctionsInViewApplicationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsAdminUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">判断用户是否是总管理员</wsdl:documentation>
+      <wsdl:input message="tns:IsAdminUserSoapIn" />
+      <wsdl:output message="tns:IsAdminUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessScopes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询指定应用的，指定视角下的指定业务服务范围</wsdl:documentation>
+      <wsdl:input message="tns:GetBusinessScopesSoapIn" />
+      <wsdl:output message="tns:GetBusinessScopesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeScopes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询指定应用的，指定视角下的指定时间服务范围</wsdl:documentation>
+      <wsdl:input message="tns:GetTimeScopesSoapIn" />
+      <wsdl:output message="tns:GetTimeScopesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFunctionsOfUser">
+      <wsdl:input message="tns:GetFunctionsOfUserSoapIn" />
+      <wsdl:output message="tns:GetFunctionsOfUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <wsdl:input message="tns:GetRolesSoapIn" />
+      <wsdl:output message="tns:GetRolesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AccreditReaderServiceSoap" type="tns:AccreditReaderServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetApplications">
+      <soap:operation soapAction="10.53.1.162/GetApplications" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFunctionsInApplication">
+      <soap:operation soapAction="10.53.1.162/GetFunctionsInApplication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildrenInRoles">
+      <soap:operation soapAction="10.53.1.162/GetChildrenInRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesByFunction">
+      <soap:operation soapAction="10.53.1.162/GetRolesByFunction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByFunction">
+      <soap:operation soapAction="10.53.1.162/GetUsersByFunction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInRoles">
+      <soap:operation soapAction="10.53.1.162/IsUserInRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInAllRoles">
+      <soap:operation soapAction="10.53.1.162/IsUserInAllRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoesUserHasPermissions">
+      <soap:operation soapAction="10.53.1.162/DoesUserHasPermissions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoesUserHasAllPermissions">
+      <soap:operation soapAction="10.53.1.162/DoesUserHasAllPermissions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesOfUserInViewApplication">
+      <soap:operation soapAction="10.53.1.162/GetRolesOfUserInViewApplication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOUScopesOfUserRoles">
+      <soap:operation soapAction="10.53.1.162/GetOUScopesOfUserRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetsBusinessScopesOfUserRoles">
+      <soap:operation soapAction="10.53.1.162/GetsBusinessScopesOfUserRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeScopesOfUserRoles">
+      <soap:operation soapAction="10.53.1.162/GetTimeScopesOfUserRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOuScopesOfUserFunctionsInViewApplication">
+      <soap:operation soapAction="10.53.1.162/GetOuScopesOfUserFunctionsInViewApplication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessScopesByUserFunctionsInViewApplication">
+      <soap:operation soapAction="10.53.1.162/GetBusinessScopesByUserFunctionsInViewApplication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeScopesByUserFunctionsInViewApplication">
+      <soap:operation soapAction="10.53.1.162/GetTimeScopesByUserFunctionsInViewApplication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsAdminUser">
+      <soap:operation soapAction="10.53.1.162/IsAdminUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessScopes">
+      <soap:operation soapAction="10.53.1.162/GetBusinessScopes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeScopes">
+      <soap:operation soapAction="10.53.1.162/GetTimeScopes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFunctionsOfUser">
+      <soap:operation soapAction="10.53.1.162/GetFunctionsOfUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <soap:operation soapAction="10.53.1.162/GetRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AccreditReaderServiceSoap12" type="tns:AccreditReaderServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetApplications">
+      <soap12:operation soapAction="10.53.1.162/GetApplications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFunctionsInApplication">
+      <soap12:operation soapAction="10.53.1.162/GetFunctionsInApplication" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildrenInRoles">
+      <soap12:operation soapAction="10.53.1.162/GetChildrenInRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesByFunction">
+      <soap12:operation soapAction="10.53.1.162/GetRolesByFunction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByFunction">
+      <soap12:operation soapAction="10.53.1.162/GetUsersByFunction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInRoles">
+      <soap12:operation soapAction="10.53.1.162/IsUserInRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInAllRoles">
+      <soap12:operation soapAction="10.53.1.162/IsUserInAllRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoesUserHasPermissions">
+      <soap12:operation soapAction="10.53.1.162/DoesUserHasPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoesUserHasAllPermissions">
+      <soap12:operation soapAction="10.53.1.162/DoesUserHasAllPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesOfUserInViewApplication">
+      <soap12:operation soapAction="10.53.1.162/GetRolesOfUserInViewApplication" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOUScopesOfUserRoles">
+      <soap12:operation soapAction="10.53.1.162/GetOUScopesOfUserRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetsBusinessScopesOfUserRoles">
+      <soap12:operation soapAction="10.53.1.162/GetsBusinessScopesOfUserRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeScopesOfUserRoles">
+      <soap12:operation soapAction="10.53.1.162/GetTimeScopesOfUserRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOuScopesOfUserFunctionsInViewApplication">
+      <soap12:operation soapAction="10.53.1.162/GetOuScopesOfUserFunctionsInViewApplication" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessScopesByUserFunctionsInViewApplication">
+      <soap12:operation soapAction="10.53.1.162/GetBusinessScopesByUserFunctionsInViewApplication" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeScopesByUserFunctionsInViewApplication">
+      <soap12:operation soapAction="10.53.1.162/GetTimeScopesByUserFunctionsInViewApplication" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsAdminUser">
+      <soap12:operation soapAction="10.53.1.162/IsAdminUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessScopes">
+      <soap12:operation soapAction="10.53.1.162/GetBusinessScopes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeScopes">
+      <soap12:operation soapAction="10.53.1.162/GetTimeScopes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFunctionsOfUser">
+      <soap12:operation soapAction="10.53.1.162/GetFunctionsOfUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <soap12:operation soapAction="10.53.1.162/GetRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AccreditReaderService">
+    <wsdl:port name="AccreditReaderServiceSoap" binding="tns:AccreditReaderServiceSoap">
+      <soap:address location="http://10.53.1.162/GZCheckService/AccreditReaderService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AccreditReaderServiceSoap12" binding="tns:AccreditReaderServiceSoap12">
+      <soap12:address location="http://10.53.1.162/GZCheckService/AccreditReaderService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

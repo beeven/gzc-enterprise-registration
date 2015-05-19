@@ -1,0 +1,65 @@
+﻿@model EnterpriseRegistration.UserProfile.Models.User
+<link rel="stylesheet" type="text/css" href="~/Content/Common.css" />
+
+<div class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="#">跨境贸易电子商务企业备案申请</a>
+        <ul class="nav nav-tabs">
+                <li id="RegInfoes" ><a  href='@Url.Action("Index", "RegInfoes")'>邮件列表</a></li>
+                <li id="FetchMailLog" ><a  href='@Url.Action("Index", "FetchMailLog")'>系统日志</a></li>
+                <li id="DataStatistic"><a   href='@Url.Action("Index", "DataStatistic")'>查询统计</a></li>
+               @if (Model.Roles.Select(x => x.RoleCode).Contains("ADMINISTRATION"))
+                {
+                    <li id="Set"><a  href='@Url.Action("Index", "Set")'>权限设置</a></li>
+                }
+                <li id="Contact"><a  href='@Url.Action("Index", "Contact")'>联系方式</a></li>
+                <li><a href='javascript:void(0);return false;' >您好：@Model.DisplayName!</a></li>
+                <li><a href='#' id="logoff">退出</a></li>
+       </ul>
+    </div>
+</div>
+<script type="text/javascript" >
+
+    (function ($) {
+        $(document).ready(function () {
+            var url = document.URL;
+            if (url.indexOf("Set")>0) {
+                $("#Set").addClass("active");
+            }
+            else if (url.indexOf("DataStatistic")>0) {
+                $("#DataStatistic").addClass("active");
+            }
+            else if (url.indexOf("FetchMailLog")>0) {
+                $("#FetchMailLog").addClass("active");
+            }
+            else if (url.indexOf("Contact") > 0) {
+                $("#Contact").addClass("active");
+            }
+            else {
+                $("#RegInfoes").addClass("active");
+            }
+
+            $("#logoff").click(function () {
+                if (confirm("确认退出？")) {
+
+                    window.opener = null;
+                    window.open('', '_self', '');
+                    window.close();
+                }
+            })
+        })
+
+
+    })(jQuery)
+
+
+    
+
+   
+    
+</script>
+
+
+
+        
+

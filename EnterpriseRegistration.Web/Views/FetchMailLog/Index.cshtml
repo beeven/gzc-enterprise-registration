@@ -1,0 +1,215 @@
+﻿
+
+@{
+    ViewBag.Title = "跨境贸易电子商务企业备案申请";
+}
+
+<html>
+<head>
+    <title>跨境贸易电子商务企业备案申请</title>
+    <script src="../../Scripts/jquery-1.8.2.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../../Bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link href="../../Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Common.css" />
+    
+</head>
+<body> 
+    @Html.Action("User","RegInfoes")
+    
+   
+@*<h2 style="text-align:center;">日志列表</h2>*@
+    <div class="outerDiv" >
+       <input type="radio" class="rdType" name="radio1" value="all" checked="checked" />显示全部
+        <input type="radio" class="rdType"  name="radio1" value="3" />邮件回复
+        <input type="radio" class="rdType" name="radio1" value="4" />备案申请操作
+        <input type="radio" class="rdType"  name="radio1" value="0|1|2" />系统操作
+    </div>
+
+    <div id="List" class="outerDiv"  >
+
+            <table style="float:right;">
+            <tr>
+                <td style="width: 250px">
+                    <label id="txtPageInfo" style="font-size: 16px;"  ></label></td>
+                <td style="width: 60px">
+                    <button id="btnFirstpage" class="btn btn-default">首页</button></td>
+                <td style="width: 70px">
+                    <button id="btnUppage" class="btn btn-default">上一页</button></td>
+                <td style="width: 70px">
+                    <button id="btnDownpage" class="btn btn-default">下一页</button></td>
+                <td style="width: 60px" class="fl">
+                    <button id="btnLastpage" class="btn btn-default">末页</button></td>
+            </tr>
+            </table>
+        </div>
+</body>
+    
+</html>
+<script type="text/javascript">
+    var maxPageNum = 0;
+    var currentpage = 0;
+    var ListCount = 0;
+    var type = "all";
+
+    function queryData() {
+        $('#List div').remove();
+        if ($('#List table').length > 1) {
+            $('#List table:first').remove();
+        }
+        $('#List table').hide();
+        $('#List').prepend("<div style='text-align: center; vertical-align: middle'><img src='/img/loading.gif' class='mr10' />Loading……</div>");
+        
+
+        $.ajax({
+            url: '@Url.Action("Loglist", "FetchMailLog")',
+            type: 'post',
+            data: {
+                "pagesize": 20,
+                "currentpage": currentpage,
+                "type": type
+            },
+            success: function (result) {
+                $('#List div').remove();
+
+                $('#List').prepend(result);
+                ListCount =parseInt( $('#hfCount').val());
+              
+                maxPageNum = parseInt($('#totalPage').val());
+                if (ListCount > 0) {
+                    $('#List table').show();
+                    Show();
+                }
+                else {
+                    if ($('#List table').length > 1) {
+                        $('#List table:first').remove();
+                    }
+                    $('#List').prepend("<div>暂无数据</div>");
+                }
+            },
+            cache: false
+        });
+    }
+
+    function Show() {
+        jQuery("a.ShortLink").each(function (index, item) {
+            var len=parseInt(jQuery(item).attr("len"));
+            if (len <=50) {
+                jQuery(item).css("display", "none");
+            }
+            else {
+                jQuery(item).css("display", "");
+            }
+        });
+       
+        jQuery("#txtPageInfo").text("共" + ListCount + "条数据，" + (currentpage + 1) + " / " + (maxPageNum) + "页，每页20条");
+        if (currentpage + 1 == maxPageNum) {
+            if (currentpage == 0) {
+                $('#btnFirstpage').attr("disabled", "disabled");
+                $('#btnUppage').attr("disabled", "disabled");
+                $('#btnDownpage').attr("disabled", "disabled");
+                $('#btnLastpage').attr("disabled", "disabled");
+            }
+            else {
+                $('#btnFirstpage').removeAttr("disabled");
+                $('#btnUppage').removeAttr("disabled");
+                $('#btnDownpage').attr("disabled", "disabled");
+                $('#btnLastpage').attr("disabled", "disabled");
+            }
+        }
+        else if (currentpage != 0) {
+            $('#btnFirstpage').removeAttr("disabled");
+            $('#btnUppage').removeAttr("disabled");
+            $('#btnDownpage').removeAttr("disabled");
+            $('#btnLastpage').removeAttr("disabled");
+        }
+        else {
+            $('#btnDownpage').removeAttr("disabled");
+            $('#btnLastpage').removeAttr("disabled");
+            $('#btnFirstpage').attr("disabled", "disabled");
+            $('#btnUppage').attr("disabled", "disabled");
+        }
+    }
+
+    jQuery("a.ShortLink").live("click", function () {
+        var tr = jQuery(this).parent();
+        tr.find(".Short").hide();
+        tr.find(".Long").show();
+        tr.find(".ShortLink").hide();
+        tr.find(".LongLink").show();
+    });
+    jQuery("a.LongLink").live("click",function () {
+        var tr = jQuery(this).parent();
+        tr.find(".Long").hide();
+        tr.find(".Short").show();
+        tr.find(".ShortLink").show();
+        tr.find(".LongLink").hide();
+    });
+
+
+  
+
+    //jQuery("#selByType").click(function () {
+    //    type = jQuery("#selType").val();
+    //    currentpage = 0;
+    //    queryData();
+    //});
+
+    jQuery(".rdType").click(function () {
+        type = jQuery(this).val();
+        currentpage = 0;
+        queryData();
+    });
+
+    queryData();
+
+    $(function () {
+        function regeditBtnActive() {
+
+            $('#btnFirstpage').click(function () {
+                GoToFirstPage();
+                return false;
+            })
+            $('#btnUppage').click(function () {
+                GoToUpPage();
+                return false;
+            })
+            $('#btnDownpage').click(function () {
+                GoToDownPage();
+                return false;
+            })
+            $('#btnLastpage').click(function () {
+                GoToLastPage();
+                return false;
+            })
+        }
+        regeditBtnActive();
+    });
+
+    //首页
+    function GoToFirstPage() {
+        currentpage = 0;
+        queryData();
+    }
+    //末页
+    function GoToLastPage() {
+        currentpage = maxPageNum;
+        queryData();
+    }
+    //上一页
+    function GoToUpPage() {
+        if (currentpage != 0) {
+            currentpage--;
+            queryData();
+        }
+    }
+    //下一页
+    function GoToDownPage() {
+        if (currentpage < maxPageNum) {
+            currentpage++;
+            queryData();
+        }
+
+    }
+</script>
