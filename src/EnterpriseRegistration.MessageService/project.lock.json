@@ -3,7 +3,8 @@
   "version": -9998,
   "projectFileDependencyGroups": {
     "": [
-      "EnterpriseRegistration.Interfaces >= 1.0.0-*"
+      "EnterpriseRegistration.Interfaces >= 1.0.0-*",
+      "OpenPop.NET >= 2.0.6.1106"
     ],
     "DNX,Version=v4.5.1": [],
     "DNXCore,Version=v5.0": [
@@ -52,6 +53,35 @@
         "lib/contract/Microsoft.CSharp.dll",
         "lib/net45/_._",
         "lib/portable-wpa81+wp80+win80+net45+aspnetcore50/Microsoft.CSharp.dll"
+      ]
+    },
+    "OpenPop.NET/2.0.6.1106": {
+      "serviceable": false,
+      "sha": "HQKEJ8ZJ+ucy3vTfBTlXoVZYmoc2H3zZv83CEdDiZcvuD5AaLUOxjKqSwmFWT/5OLCc39oTa3GdY/auYP//52w==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/net40/OpenPop.dll"
+          ],
+          "compileAssemblies": [
+            "lib/net40/OpenPop.dll"
+          ]
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [],
+          "compileAssemblies": []
+        }
+      },
+      "files": [
+        "OpenPop.NET.2.0.6.1106.nupkg",
+        "OpenPop.NET.2.0.6.1106.nupkg.sha512",
+        "OpenPop.NET.nuspec",
+        "lib/net20/OpenPop.dll",
+        "lib/net40/OpenPop.dll"
       ]
     },
     "System.Collections/4.0.10-beta-22816": {

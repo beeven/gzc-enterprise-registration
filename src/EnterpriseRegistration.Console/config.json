@@ -1,0 +1,14 @@
+{
+	"MailSetting": {
+		"PopServer": "mail.customs.gov.cn",
+		"PopPort": "",
+		"Account": "",
+		"Password": ""
+	},
+	"DataSetting": {
+		
+	},
+	"FilterSetting": {
+		
+	}
+}

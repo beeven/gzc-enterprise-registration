@@ -9,16 +9,10 @@ namespace EnterpriseRegistration.MessageService
 {
     public class MailMessageService : IMessageService
     {
-        public MailMessageService() {
-            Filters = new List<IMessageFilter>();
-        }
-
-        public IList<IMessageFilter> Filters { get; set; }
-
-
         public IEnumerable<Message> GetMessages()
         {
             throw new NotImplementedException();
+            
         }
 
         public void SendMessage(string address, Message message)

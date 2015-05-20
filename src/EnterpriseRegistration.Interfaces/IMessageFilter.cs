@@ -8,8 +8,8 @@ namespace EnterpriseRegistration.Interfaces
 {
     public interface IMessageFilter
     {
-        IEnumerable<Message> Filter();
+        IEnumerable<Message> Filter(IEnumerable<Message> source);
 
-        IEnumerable<Message> Filter(Action<IEnumerable<Message>> actionOnNotquaulified);
+        IEnumerable<Message> Filter(IEnumerable<Message> source, Action<IEnumerable<Message>> actionOnNotquaulified);
     }
 }
