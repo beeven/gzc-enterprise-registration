@@ -11,7 +11,7 @@
     },
 
     "commands": {
-        "EnterpriseRegistratoin.Console": "EnterpriseRegistratoin.Console"
+        "EnterpriseRegistration.Console": "EnterpriseRegistration.Console"
     },
 
     "frameworks": {

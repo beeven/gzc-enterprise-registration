@@ -14,7 +14,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EnterpriseRegistration.Inte
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EnterpriseRegistration.DataService", "src\EnterpriseRegistration.DataService\EnterpriseRegistration.DataService.xproj", "{F26101B8-CD3C-43A8-A40F-693CC33D2671}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EnterpriseRegistratoin.Console", "src\EnterpriseRegistratoin.Console\EnterpriseRegistratoin.Console.xproj", "{816A800E-D077-4883-BA70-3B56A52630F4}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EnterpriseRegistration.Console", "src\EnterpriseRegistration.Console\EnterpriseRegistration.Console.xproj", "{816A800E-D077-4883-BA70-3B56A52630F4}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EnterpriseRegistration.MessageService", "src\EnterpriseRegistration.MessageService\EnterpriseRegistration.MessageService.xproj", "{BDC31F90-AE3B-441D-81BA-20F36A6050A8}"
 EndProject
