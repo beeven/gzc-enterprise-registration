@@ -2,7 +2,9 @@
   "locked": false,
   "version": -9998,
   "projectFileDependencyGroups": {
-    "": [],
+    "": [
+      "Microsoft.DataAnnotations >= 1.0.0-beta1"
+    ],
     "DNX,Version=v4.5.1": [],
     "DNXCore,Version=v5.0": [
       "System.Collections >= 4.0.10-beta-22816",
@@ -52,6 +54,54 @@
         "lib/portable-wpa81+wp80+win80+net45+aspnetcore50/Microsoft.CSharp.dll"
       ]
     },
+    "Microsoft.DataAnnotations/1.0.0-beta1": {
+      "serviceable": false,
+      "sha": "ZvLzh5xkQSGkwHdrycpVU+o6bQNTsxVvIWCMgSiDE6Cbz9CyaxL2gwWukws4y6Dm8mwE5AFK4HWBSS79F9H1qA==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {
+            "System.ComponentModel.Annotations": "4.0.10-beta-22231"
+          },
+          "frameworkAssemblies": [
+            "System.ComponentModel.DataAnnotations",
+            "mscorlib",
+            "System",
+            "System.Core",
+            "Microsoft.CSharp"
+          ],
+          "runtimeAssemblies": [
+            "lib/net45/Microsoft.DataAnnotations.dll"
+          ],
+          "compileAssemblies": [
+            "lib/net45/Microsoft.DataAnnotations.dll"
+          ]
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {
+            "System.Runtime": "4.0.20-beta-22231",
+            "System.ComponentModel.Annotations": "4.0.10-beta-22231"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/aspnetcore50/Microsoft.DataAnnotations.dll"
+          ],
+          "compileAssemblies": [
+            "lib/aspnetcore50/Microsoft.DataAnnotations.dll"
+          ]
+        }
+      },
+      "files": [
+        "Microsoft.DataAnnotations.1.0.0-beta1.nupkg",
+        "Microsoft.DataAnnotations.1.0.0-beta1.nupkg.sha512",
+        "Microsoft.DataAnnotations.nuspec",
+        "lib/aspnetcore50/Microsoft.DataAnnotations.dll",
+        "lib/aspnetcore50/Microsoft.DataAnnotations.xml",
+        "lib/net45/Microsoft.DataAnnotations.dll",
+        "lib/net45/Microsoft.DataAnnotations.xml",
+        "lib/portable-net45+win+wpa81/Microsoft.DataAnnotations.dll",
+        "lib/portable-net45+win+wpa81/Microsoft.DataAnnotations.xml"
+      ]
+    },
     "System.Collections/4.0.10-beta-22816": {
       "serviceable": false,
       "sha": "pFwiLMtcsvAx8ZFsSIDVSuPAXXW2z1gkmE/YqiMELlxPVHKyJGrUZoJCIBfVg1HERxMnd1dyj7ffqj5Nx3mzGQ==",
@@ -94,6 +144,76 @@
         "lib/contract/System.Collections.dll",
         "lib/net45/System.Collections.dll",
         "lib/portable-wpa81+wp80+win80+net45+aspnetcore50/System.Collections.dll"
+      ]
+    },
+    "System.ComponentModel/4.0.0-beta-22231": {
+      "serviceable": false,
+      "sha": "8omvXlxhrl662ZFNZV3mv64oFaKtzPjiTBduUv566kfL8fxQcY3pBMtt9/Ir2OgalqJXOgExp8pdC5uXWE7Jqw==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {
+            "System.Runtime": "4.0.0-beta-22231"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [],
+          "compileAssemblies": []
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {
+            "System.Runtime": "4.0.0-beta-22231"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/aspnetcore50/System.ComponentModel.dll"
+          ],
+          "compileAssemblies": [
+            "lib/contract/System.ComponentModel.dll"
+          ]
+        }
+      },
+      "files": [
+        "License.rtf",
+        "System.ComponentModel.4.0.0-beta-22231.nupkg",
+        "System.ComponentModel.4.0.0-beta-22231.nupkg.sha512",
+        "System.ComponentModel.nuspec",
+        "lib/aspnetcore50/System.ComponentModel.dll",
+        "lib/contract/System.ComponentModel.dll"
+      ]
+    },
+    "System.ComponentModel.Annotations/4.0.10-beta-22231": {
+      "serviceable": false,
+      "sha": "UISJ/QJdrIgjkcEtmxrILc+h/DsfgxnJsEjKUyGi7E06qoPL8bpU4KdJfxmFnh+F7R776h760Mnd+TFnKWgQwA==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {
+            "System.ComponentModel": "4.0.0-beta-22231",
+            "System.Runtime": "4.0.0-beta-22231"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [],
+          "compileAssemblies": []
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {
+            "System.ComponentModel": "4.0.0-beta-22231",
+            "System.Runtime": "4.0.0-beta-22231"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/aspnetcore50/System.ComponentModel.Annotations.dll"
+          ],
+          "compileAssemblies": [
+            "lib/contract/System.ComponentModel.Annotations.dll"
+          ]
+        }
+      },
+      "files": [
+        "License.rtf",
+        "System.ComponentModel.Annotations.4.0.10-beta-22231.nupkg",
+        "System.ComponentModel.Annotations.4.0.10-beta-22231.nupkg.sha512",
+        "System.ComponentModel.Annotations.nuspec",
+        "lib/aspnetcore50/System.ComponentModel.Annotations.dll",
+        "lib/contract/System.ComponentModel.Annotations.dll"
       ]
     },
     "System.Dynamic.Runtime/4.0.10-beta-22816": {
@@ -411,6 +531,36 @@
         "lib/contract/System.Reflection.Primitives.dll",
         "lib/net45/System.Reflection.Primitives.dll",
         "lib/portable-wpa81+wp80+win80+net45+aspnetcore50/System.Reflection.Primitives.dll"
+      ]
+    },
+    "System.Runtime/4.0.20-beta-22231": {
+      "serviceable": false,
+      "sha": "8CFWYP0ldITYQqgfMR6Wn7yjpOzrVzwkfDWHd3PtppILgmvo6rjuJd+KfZTCdacbf1WUbWsp1yuJcTpDYI3RUw==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [],
+          "compileAssemblies": []
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/aspnetcore50/System.Runtime.dll"
+          ],
+          "compileAssemblies": [
+            "lib/contract/System.Runtime.dll"
+          ]
+        }
+      },
+      "files": [
+        "License.rtf",
+        "System.Runtime.4.0.20-beta-22231.nupkg",
+        "System.Runtime.4.0.20-beta-22231.nupkg.sha512",
+        "System.Runtime.nuspec",
+        "lib/aspnetcore50/System.Runtime.dll",
+        "lib/contract/System.Runtime.dll"
       ]
     },
     "System.Runtime/4.0.20-beta-22816": {

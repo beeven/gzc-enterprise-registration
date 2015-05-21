@@ -1,14 +1,17 @@
 {
-	"MailSetting": {
-		"PopServer": "mail.customs.gov.cn",
-		"PopPort": "",
-		"Account": "",
-		"Password": ""
-	},
-	"DataSetting": {
-		
-	},
-	"FilterSetting": {
-		
-	}
+  "MailSetting": {
+    "PopServer": "mail.customs.gov.cn",
+    "PopPort": "",
+    "Account": "",
+    "Password": "",
+    "DeleteAfterReceived": false
+  },
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Data Source=.;Initial Catalog=MessageStore;User ID=sa;Password=qwer*1234;"
+    }
+  },
+  "FilterSetting": {
+
+  }
 }
