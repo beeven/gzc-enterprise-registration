@@ -15,7 +15,7 @@ using Serilog.Formatting.Json;
 #endif
 
 
-namespace EnterpriseRegistration.Logger
+namespace EnterpriseRegistration.Logging
 {
     public class Logger:EnterpriseRegistration.Interfaces.ILogger
     {
@@ -24,7 +24,6 @@ namespace EnterpriseRegistration.Logger
 
         public Logger()
         {
-            //BasicConfigurator.Configure();
             var factory = new Microsoft.Framework.Logging.LoggerFactory();
 
             _logger = factory.CreateLogger("EnterpriseRegistration");
@@ -42,7 +41,7 @@ namespace EnterpriseRegistration.Logger
         }
         public void Log(String content)
         {
-            _logger.LogDebug(content);
+            _logger.LogInformation(content);
         }
     }
 }

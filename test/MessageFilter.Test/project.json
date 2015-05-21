@@ -1,13 +1,22 @@
 {
 	"commands": {
-		"test": "xunit.runner.aspnet"
+		"test": "xunit.runner.dnx"
 	},
 	"dependencies": {
-		"xunit.runner.aspnet":"2.0.0-*",
-		"EnterpriseRegistration.Filters":"1.0.0-*",
-		"EnterpriseRegistration.Interfaces":"1.0.0-*"
+		"xunit": "2.1.0-beta2-*",
+		"xunit.runner.dnx": "2.1.0-beta2-*",
+		"EnterpriseRegistration.Filters": "1.0.0-*",
+		"EnterpriseRegistration.Interfaces": "1.0.0-*"
 	},
 	"frameworks": {
-		"dnx451": {}
+		"dnx451": {},
+		"dnxcore50": {
+			"dependencies": {
+				"System.Collections": "4.0.10-beta-22816",
+				"System.Linq": "4.0.0-beta-22816",
+				"System.Threading": "4.0.10-beta-22816",
+				"Microsoft.CSharp": "4.0.0-beta-22816"
+			}
+		}
 	}
 }

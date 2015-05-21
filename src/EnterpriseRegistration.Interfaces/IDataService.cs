@@ -8,10 +8,10 @@ namespace EnterpriseRegistration.Interfaces
 {
     public interface IDataService
     {
-        void Save(Message message);
-        Task<Message> Get(Guid id);
+        Task SaveAsync(Message message);
+        Task<Message> GetByIdAsync(Guid id);
 
-        void Delete(Guid id);
+        Task DeleteAsync(Guid id);
 
         IQueryable<Message> DataContext { get; }
     }

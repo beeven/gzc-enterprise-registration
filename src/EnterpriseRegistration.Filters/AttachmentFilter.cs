@@ -6,6 +6,9 @@ using EnterpriseRegistration.Interfaces.Entities;
 
 namespace EnterpriseRegistration.Filters
 {
+	///<summary>
+	/// Filter attachments contains xls[x] files
+	///</summary>
 	public class AttachmentFilter:IMessageFilter
 	{
 		public IEnumerable<Message> Filter(IEnumerable<Message> source)

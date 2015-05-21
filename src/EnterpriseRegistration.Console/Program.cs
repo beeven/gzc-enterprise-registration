@@ -7,6 +7,7 @@ using EnterpriseRegistration.Interfaces;
 using EnterpriseRegistration.MessageService;
 using EnterpriseRegistration.DataService;
 using EnterpriseRegistration.Filters;
+using EnterpriseRegistration.Logging;
 
 namespace EnterpriseRegistration.Console
 {
@@ -15,7 +16,10 @@ namespace EnterpriseRegistration.Console
         IContainer container;
         public void Main(string[] args)
         {
+            Configure();
             
+            MessageProcessor processor = container.Resolve<MessageProcessor>();
+            processor.PopulateFilters();
         }
         
         
@@ -25,6 +29,8 @@ namespace EnterpriseRegistration.Console
             builder.RegisterType<MailMessageService>().As<IMessageService>();
             builder.RegisterType<SQLDataService>().As<IDataService>();
             builder.RegisterModule(new FiltersModule());
+            builder.RegisterType<Logger>().As<ILogger>();
+            builder.RegisterType<MessageProcessor>().AsSelf();
             
             container = builder.Build();
         }

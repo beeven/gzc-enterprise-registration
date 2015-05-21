@@ -25,7 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{339E66C6-F
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MessageFilter.Test", "test\MessageFilter.Test\MessageFilter.Test.xproj", "{598CBCF1-5A9E-45C8-98F7-CEFC3D28AD5A}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EnterpriseRegistration.Logger", "src\EnterpriseRegistration.Logger\EnterpriseRegistration.Logger.xproj", "{D210DA79-221C-4ED7-9ACE-2E9B347A3785}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EnterpriseRegistration.Logging", "src\EnterpriseRegistration.Logging\EnterpriseRegistration.Logging.xproj", "{D210DA79-221C-4ED7-9ACE-2E9B347A3785}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DataService.Test", "test\DataService.Test\DataService.Test.xproj", "{07634FDD-501D-45B1-B8E0-7B94A71B63FD}"
 EndProject

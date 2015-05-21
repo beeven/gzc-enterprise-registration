@@ -11,7 +11,8 @@
         "EnterpriseRegistration.Interfaces": "1.0.0-*",
         "EnterpriseRegistration.DataService":"1.0.0-*",
         "EnterpriseRegistration.MessageService":"1.0.0-*",
-        "EnterpriseRegistration.Filters":"1.0.0-*"
+        "EnterpriseRegistration.Filters":"1.0.0-*",
+        "EnterpriseRegistration.Logging":"1.0.0-*"
     },
 
     "commands": {

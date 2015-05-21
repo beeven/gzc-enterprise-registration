@@ -14,18 +14,18 @@ namespace EnterpriseRegistration.DataService
         {
             db = new MessageStoreContext();
         }
-        public async void Save(Message message)
+        public async Task SaveAsync(Message message)
         {
             db.Messages.Add(message);
             await db.SaveChangesAsync();
         }
 
-        public async Task<Message> Get(Guid id)
+        public async Task<Message> GetByIdAsync(Guid id)
         {
-            return await db.Messages.AsNoTracking().FirstAsync(x => x.MessageId == id);
+            return await db.Messages.FirstAsync(x => x.MessageId == id);
         }
 
-        public async void Delete(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             var itemToRemove = db.Messages.SingleOrDefault(x => x.MessageId == id);
             if (itemToRemove != null)

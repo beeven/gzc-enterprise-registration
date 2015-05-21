@@ -22,9 +22,10 @@ namespace EnterpriseRegistration.DataService
                 .Collection(m => m.Attachments)
                 .InverseReference(a => a.Message)
                 .ForeignKey(a => a.MessageId);
-
-            builder.Entity<Message>().Property(a => a.MessageId).ForSqlServer(b => b.UseSequence());
-            builder.Entity<Attachment>().Property(a => a.AttachmentId).ForSqlServer(b => b.UseSequence());
+            
+            builder.Entity<Attachment>().Key(a=>a.AttachmentId);
+            //builder.Entity<Message>().Property(a => a.MessageId).ForSqlServer(b => b.UseSequence());
+            //builder.Entity<Attachment>().Property(a => a.AttachmentId).ForSqlServer(b => b.UseSequence());
             base.OnModelCreating(builder);
         }
 
