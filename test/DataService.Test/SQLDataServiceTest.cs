@@ -18,7 +18,7 @@ namespace DataService.Test
         }
 
         [Fact]
-        public async void SaveTest()
+        public async void SaveAndGetAMessage()
         {
             SQLDataService svc = new SQLDataService();
             Message msg = new Message()
@@ -35,7 +35,7 @@ namespace DataService.Test
             };
             await svc.SaveAsync(msg);
             
-            Assert.True(svc.DataContext.Count() >= 1);
+            Assert.True(svc.Messages.Count() >= 1);
             
             var msgId = msg.MessageId;
             Assert.NotEqual(new Guid(),msgId);
@@ -46,6 +46,14 @@ namespace DataService.Test
             Assert.Equal(1,actual.Attachments.Count);
             Assert.Equal("attachment.txt",actual.Attachments.First().FileName);
             Assert.Equal(actual.MessageId,actual.Attachments[0].MessageId);
+        }
+        
+        [Fact]
+        public void SaveAMessageFindAnAttachment()
+        {
+            MessageStoreContext ms = new MessageStoreContext();
+            Console.WriteLine(ms.Messages.Count());
+            Console.WriteLine(ms.Attachments.Count());
         }
     }
 }

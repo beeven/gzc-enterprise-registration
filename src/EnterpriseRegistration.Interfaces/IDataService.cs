@@ -13,6 +13,6 @@ namespace EnterpriseRegistration.Interfaces
 
         Task DeleteAsync(Guid id);
 
-        IQueryable<Message> DataContext { get; }
+        IQueryable<Message> Messages { get; }
     }
 }

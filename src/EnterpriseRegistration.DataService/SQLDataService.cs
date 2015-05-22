@@ -35,7 +35,7 @@ namespace EnterpriseRegistration.DataService
             }
         }
 
-        public IQueryable<Message> DataContext
+        public IQueryable<Message> Messages
         {
             get
             {
