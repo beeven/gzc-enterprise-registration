@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Framework.ConfigurationModel;
+using EnterpriseRegistration.DataService.Models;
 
 namespace EnterpriseRegistration.DataService
 {
@@ -19,10 +20,13 @@ namespace EnterpriseRegistration.DataService
         {
             builder.Entity<Message>().Key(a => a.MessageId);
 
+            builder.Entity<Attachment>().Ignore(x => x.Content);
+
             builder.Entity<Message>()
                 .Collection(m => m.Attachments)
                 .InverseReference(a => a.Message)
                 .ForeignKey(a => a.MessageId);
+
             
             //builder.Entity<Attachment>().Key(a=>a.AttachmentId);
             //builder.Entity<Message>().Property(a => a.MessageId).ForSqlServer(b => b.UseSequence());

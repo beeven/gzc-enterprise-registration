@@ -34,7 +34,7 @@ namespace EnterpriseRegistration.MessageService
             {
                 try
                 {
-                    _logger.Log($"host:{host}, port:{port}");
+                    _logger.Log($"Connecting host: {host}, port: {port}");
                     client.Connect(host, port, false);
                     client.Authenticate(conf.Get("Mail:Incoming:Account"), conf.Get("Mail:Incoming:Password"));
                 }
@@ -46,8 +46,12 @@ namespace EnterpriseRegistration.MessageService
                 var infoes = client.GetMessageInfos();
                 foreach(var info in infoes)
                 {
+                    _logger.Log($"Mail #{info.Number}, Id: {info.Identifier}");
 
                     var m = client.GetMessage(info.Number);
+
+                    _logger.Log($"\tFrom:{m.Headers.From?.Address}");
+
                     Message msg = new Message()
                     {
                         Subject = m.Headers.Subject,
@@ -60,8 +64,10 @@ namespace EnterpriseRegistration.MessageService
                         msg.Body = m.FindFirstPlainTextVersion().GetBodyAsText();
                     }
                     msg.Attachments = new List<Attachment>();
-                    foreach(var a in m.FindAllAttachments())
+                    _logger.Log("Attachments:");
+                    foreach (var a in m.FindAllAttachments())
                     {
+                        _logger.Log($"\tFileName:{a.FileName}");
                         msg.Attachments.Add(new Attachment()
                         {
                             Content = a.Body,

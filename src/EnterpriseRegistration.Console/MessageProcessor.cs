@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using EnterpriseRegistration.Interfaces;
 using EnterpriseRegistration.Interfaces.Entities;
+using EnterpriseRegistration.Filters;
 
 namespace EnterpriseRegistration.Console
 {
@@ -16,6 +17,19 @@ namespace EnterpriseRegistration.Console
 			this.msgService = messageService;
 			this.dataService = dataService;
 		}
+
+        public void DoWork()
+        {
+            var result = msgService.GetMessages();
+            foreach(var f in filters)
+            {
+                result = result.ApplyFilter(f);
+            }
+            foreach(var r in result)
+            {
+                dataService.SaveAsync(r);
+            }
+        }
 		
 		public void PopulateFilters()
 		{
