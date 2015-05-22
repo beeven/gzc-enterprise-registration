@@ -18,25 +18,29 @@ namespace EnterpriseRegistration.MessageService
         {
             _logger = logger;
             conf = new Configuration();
-            conf.AddJsonFile("config.json");
-            
+            conf.AddJsonFile("config.json")
+                .AddUserSecrets(); // UserSecrets has higher priority
         }
 
         public IEnumerable<Message> GetMessages()
         {
-            string host = conf.Get("MailSetting:PopServer") ?? "mail.customs.gov.cn";
-            string port = conf.Get("MailSetting:PopPort") ?? "110";
+            var confhost = conf.Get("Mail:Incoming:PopServer");
+            var confport = conf.Get("Mail:Incoming:PopPort");
+            string host = String.IsNullOrEmpty(confhost) ? "mail.customs.gov.cn" : confhost;
+            int port;
+            if (!int.TryParse(confport, out port)) port = 110;
 
             using (var client = new Pop3Client())
             {
                 try
                 {
-                    client.Connect(host, int.Parse(port), false);
-                    client.Authenticate(conf.Get("MailSetting:Account"), conf.Get("MailSetting:Password"));
+                    _logger.Log($"host:{host}, port:{port}");
+                    client.Connect(host, port, false);
+                    client.Authenticate(conf.Get("Mail:Incoming:Account"), conf.Get("Mail:Incoming:Password"));
                 }
                 catch(Exception ex)
                 {
-                    _logger.Log(String.Format("Cannot connect to mail server. Exception: {0}\nStackTrace:{1}",ex.Message,ex.StackTrace));
+                    _logger.Log($"Cannot connect to mail server. Exception: {ex.Message}\nStackTrace:{ex.StackTrace}");
                     yield break;
                 }
                 int count = client.GetMessageCount();
@@ -68,7 +72,7 @@ namespace EnterpriseRegistration.MessageService
                     yield return msg;
                 }
 
-                if(Regex.IsMatch(conf.Get("MailSetting:DeleteAfterReceived"),"[Tt]rue|1|[Yy]es"))
+                if(Regex.IsMatch(conf.Get("Mail:Incoming:DeleteAfterReceived"),"[Tt]rue|1|[Yy]es"))
                 {
                     client.DeleteAllMessages();
                 }
@@ -78,9 +82,16 @@ namespace EnterpriseRegistration.MessageService
                
         }
 
-        public void SendMessage(string address, Message message)
+        public async Task SendMessage(string address, Message message)
         {
-            throw new NotImplementedException();
+            System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
+            client.Host = conf.Get("Mail:Outgoing:SmtpServer");
+            client.Port = int.Parse("Mail:Outgoing:SmtpPort");
+            var account = conf.Get("Mail:Outgoing:Account");
+            var password = conf.Get("Mail:Outgoing:Password");
+            client.Credentials = new System.Net.NetworkCredential(account,password);
+            await client.SendMailAsync(message.From, address, message.Subject, message.Body);
+           
         }
     }
 }

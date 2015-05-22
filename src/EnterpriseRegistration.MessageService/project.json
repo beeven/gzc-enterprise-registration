@@ -1,4 +1,5 @@
 {
+  "userSecretsId": "aspnet5-EnterpriseRegistration.MessageService-20150522033745",
   "version": "1.0.0-*",
   "description": "",
   "authors": [ "" ],
@@ -9,8 +10,8 @@
   "dependencies": {
     "EnterpriseRegistration.Interfaces": "1.0.0-*",
     "OpenPop.NET": "2.0.6.1106",
-    "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta4"
-    
+    "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta4",
+    "Microsoft.Framework.ConfigurationModel.UserSecrets": "1.0.0-beta4"
   },
 
   "frameworks": {

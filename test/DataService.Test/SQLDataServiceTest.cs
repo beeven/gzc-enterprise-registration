@@ -26,10 +26,12 @@ namespace DataService.Test
                  From = "from@addr.com",
                  Body = "body",
                  Subject = "subject",
+                 DateReceived = DateTime.Now,
                  Attachments = new List<Attachment>()
                  {
                      new Attachment(){ 
-                         FileName = "attachment.txt"
+                         FileName = "attachment.txt",
+                         MIMEType = "application/octet-stream"
                      }
                  }
             };
@@ -52,8 +54,11 @@ namespace DataService.Test
         public void SaveAMessageFindAnAttachment()
         {
             MessageStoreContext ms = new MessageStoreContext();
-            Console.WriteLine(ms.Messages.Count());
-            Console.WriteLine(ms.Attachments.Count());
+            Console.WriteLine("Messages: {0}",ms.Messages.Count());
+            Console.WriteLine("Attachemnts: {0}",ms.Attachments.Count());
+            Message actual = ms.Messages.SingleOrDefault(x => x.MessageId == new Guid("9C9E3928-FEE7-4E8C-B4E8-08D26256FBBB"));
+            Console.WriteLine("Message subject: {0}",actual?.Subject);
+            Console.WriteLine("Message's attachments: {0}",actual?.Attachments.Count);
         }
     }
 }

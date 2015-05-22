@@ -10,6 +10,6 @@ namespace EnterpriseRegistration.Interfaces
     {
         IEnumerable<Message> GetMessages();
 
-        void SendMessage(String address, Message message);
+        Task SendMessage(String address, Message message);
     }
 }

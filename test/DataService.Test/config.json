@@ -1,0 +1,12 @@
+﻿{
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Server=.;Database=MessageStore;User ID=sa;Password=qwer*1234"
+    }
+  },
+  "EntityFramework": {
+    "MessageStoreContext": {
+      "ConnectionStringKey": "Data:DefaultConnection:ConnectionString"
+    }
+  }
+}

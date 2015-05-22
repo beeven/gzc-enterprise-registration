@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Framework.ConfigurationModel;
 
 namespace EnterpriseRegistration.DataService
 {
@@ -23,7 +24,7 @@ namespace EnterpriseRegistration.DataService
                 .InverseReference(a => a.Message)
                 .ForeignKey(a => a.MessageId);
             
-            builder.Entity<Attachment>().Key(a=>a.AttachmentId);
+            //builder.Entity<Attachment>().Key(a=>a.AttachmentId);
             //builder.Entity<Message>().Property(a => a.MessageId).ForSqlServer(b => b.UseSequence());
             //builder.Entity<Attachment>().Property(a => a.AttachmentId).ForSqlServer(b => b.UseSequence());
             base.OnModelCreating(builder);
@@ -31,9 +32,11 @@ namespace EnterpriseRegistration.DataService
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Visual Studio 2015 | Use the LocalDb 12 instance created by Visual Studio
-            //optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;");
-            optionsBuilder.UseInMemoryStore();
+            var config = new Configuration();
+            config.AddJsonFile("config.json");
+            
+            optionsBuilder.UseSqlServer(config.Get("Data:DefaultConnection:ConnectionString"));
+            //optionsBuilder.UseInMemoryStore();
 
         }
     }

@@ -1,17 +1,30 @@
 {
-  "MailSetting": {
-    "PopServer": "mail.customs.gov.cn",
-    "PopPort": "",
-    "Account": "",
-    "Password": "",
-    "DeleteAfterReceived": false
-  },
-  "Data": {
-    "DefaultConnection": {
-      "ConnectionString": "Data Source=.;Initial Catalog=MessageStore;User ID=sa;Password=qwer*1234;"
+  "Mail": {
+    "Incoming": {
+      "PopServer": "mail.customs.gov.cn",
+      "PopPort": "110",
+      "Account": "",
+      "Password": "",
+      "DeleteAfterReceived": false
+    },
+    "Outgoing": {
+      "SmtpServer": "mail.customs.gov.cn",
+      "SmtpPort": "",
+      "Account": "",
+      "Password": ""
     }
   },
   "FilterSetting": {
 
+  },
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Server=.;Database=MessageStore;User ID=sa;Password=qwer*1234"
+    }
+  },
+  "EntityFramework": {
+    "MessageStoreContext": {
+      "ConnectionStringKey": "Data:DefaultConnection:ConnectionString"
+    }
   }
 }

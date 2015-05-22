@@ -1,25 +1,26 @@
 {
-    "version": "1.0.0-*",
-    "description": "",
-    "authors": [ "" ],
-    "tags": [ "" ],
-    "projectUrl": "",
-    "licenseUrl": "",
+  "userSecretsId": "aspnet5-EnterpriseRegistration.MessageService-20150522033745",
+  "version": "1.0.0-*",
+  "description": "",
+  "authors": [ "" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
 
-    "dependencies": {
-        "Autofac": "4.0.0-alpha2",
-        "EnterpriseRegistration.Interfaces": "1.0.0-*",
-        "EnterpriseRegistration.DataService":"1.0.0-*",
-        "EnterpriseRegistration.MessageService":"1.0.0-*",
-        "EnterpriseRegistration.Filters":"1.0.0-*",
-        "EnterpriseRegistration.Logging":"1.0.0-*"
-    },
+  "dependencies": {
+    "Autofac": "4.0.0-alpha2",
+    "EnterpriseRegistration.Interfaces": "1.0.0-*",
+    "EnterpriseRegistration.DataService": "1.0.0-*",
+    "EnterpriseRegistration.MessageService": "1.0.0-*",
+    "EnterpriseRegistration.Filters": "1.0.0-*",
+    "EnterpriseRegistration.Logging": "1.0.0-*"
+  },
 
-    "commands": {
-        "EnterpriseRegistration.Console": "EnterpriseRegistration.Console"
-    },
+  "commands": {
+    "EnterpriseRegistration.Console": "EnterpriseRegistration.Console"
+  },
 
-    "frameworks": {
-        "dnx451": { }
-    }
+  "frameworks": {
+    "dnx451": { }
+  }
 }

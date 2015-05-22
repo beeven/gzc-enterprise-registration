@@ -1,0 +1,17 @@
+﻿{
+  "Mail": {
+    "Incoming": {
+      "PopServer": "mail.customs.gov.cn",
+      "PopPort": "110",
+      "Account": "abc",
+      "Password": "abc",
+      "DeleteAfterReceived": false
+    },
+    "Outgoing": {
+      "SmtpServer": "mail.customs.gov.cn",
+      "SmtpPort": "25",
+      "Account": "abc",
+      "Password": "abc"
+    }
+  }
+}

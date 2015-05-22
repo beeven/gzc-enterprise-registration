@@ -11,7 +11,11 @@
     "EntityFramework": "7.0.0-beta4",
     "EntityFramework.SqlServer": "7.0.0-beta4",
     "EntityFramework.InMemory": "7.0.0-beta4",
-    "Microsoft.Framework.Logging.Console": "1.0.0-beta4"
+    "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta4",
+    "MongoDB.Driver": "2.0.0"
+  },
+  "commands": {
+    "ef": "EntityFramework.Commands"
   },
 
   "frameworks": {
