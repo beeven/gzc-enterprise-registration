@@ -43,10 +43,11 @@ namespace EnterpriseRegistration.MessageService
                     _logger.Log($"Cannot connect to mail server. Exception: {ex.Message}\nStackTrace:{ex.StackTrace}");
                     yield break;
                 }
-                int count = client.GetMessageCount();
-                for (int i = 0; i < count; i++)
+                var infoes = client.GetMessageInfos();
+                foreach(var info in infoes)
                 {
-                    var m = client.GetMessage(i);
+
+                    var m = client.GetMessage(info.Number);
                     Message msg = new Message()
                     {
                         Subject = m.Headers.Subject,
@@ -76,7 +77,6 @@ namespace EnterpriseRegistration.MessageService
                 {
                     client.DeleteAllMessages();
                 }
-                
                 client.Disconnect();
             }
                
