@@ -9,11 +9,13 @@ namespace EnterpriseRegistration.Interfaces.Entities
         public Guid MessageId { get; set; }
 
 
-        public String From { get; set; }
+        public String FromAddress { get; set; }
+
+        public String FromName { get; set; }
 
         public String Subject { get; set; }
 
-        public DateTime DateReceived { get; set; }
+        public DateTime DateSent { get; set; }
 
         public String Body { get; set; }
 

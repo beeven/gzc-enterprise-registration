@@ -1,0 +1,74 @@
+﻿2015-05-25 15:24:34.027 +08:00 Information: [EnterpriseRegistration] Connecting host: mail.customs.gov.cn, port: 110
+2015-05-25 15:24:55.130 +08:00 Information: [EnterpriseRegistration] Cannot connect to mail server. Exception: Server not found
+StackTrace:   at OpenPop.Pop3.Pop3Client.Connect(String hostname, Int32 port, Boolean useSsl, Int32 receiveTimeout, Int32 sendTimeout, RemoteCertificateValidationCallback certificateValidator)
+   at OpenPop.Pop3.Pop3Client.Connect(String hostname, Int32 port, Boolean useSsl)
+   at EnterpriseRegistration.MessageService.MailMessageService.<GetMessages>d__3.MoveNext() in D:\Developer\gzc-enterprise-registration6\src\EnterpriseRegistration.MessageService\MailMessageService.cs:line 38
+2015-05-25 15:25:58.646 +08:00 Information: [EnterpriseRegistration] Connecting host: mail.customs.gov.cn, port: 110
+2015-05-25 15:25:59.611 +08:00 Information: [EnterpriseRegistration] Mail #1, Id: MSGUID4990855
+2015-05-25 15:26:00.037 +08:00 Information: [EnterpriseRegistration] 	From:yangquanhua@chinaport.gov.cn
+2015-05-25 15:26:00.049 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:00.067 +08:00 Information: [EnterpriseRegistration] Mail #2, Id: MSGUID5074537
+2015-05-25 15:26:03.186 +08:00 Information: [EnterpriseRegistration] 	From:millie@c-young.net
+2015-05-25 15:26:03.187 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:03.190 +08:00 Information: [EnterpriseRegistration] 	FileName:image001.png
+2015-05-25 15:26:03.191 +08:00 Information: [EnterpriseRegistration] 	FileName:周末小分享之1024.pps
+2015-05-25 15:26:03.230 +08:00 Information: [EnterpriseRegistration] Mail #3, Id: MSGUID5480396
+2015-05-25 15:26:04.038 +08:00 Information: [EnterpriseRegistration] 	From:Info@lists5.ctrip.com
+2015-05-25 15:26:04.039 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:04.040 +08:00 Information: [EnterpriseRegistration] Mail #4, Id: MSGUID6225804
+2015-05-25 15:26:10.172 +08:00 Information: [EnterpriseRegistration] 	From:lijianping@customs.gov.cn
+2015-05-25 15:26:10.173 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:10.174 +08:00 Information: [EnterpriseRegistration] 	FileName:一次申报系统（数据库版）导入功能方案.doc
+2015-05-25 15:26:10.191 +08:00 Information: [EnterpriseRegistration] Mail #5, Id: MSGUID6269340
+2015-05-25 15:26:10.411 +08:00 Information: [EnterpriseRegistration] 	From:xiaoyanlin@wondersoft.cn
+2015-05-25 15:26:10.411 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:10.412 +08:00 Information: [EnterpriseRegistration] Mail #6, Id: MSGUID6298727
+2015-05-25 15:26:10.848 +08:00 Information: [EnterpriseRegistration] 	From:xiaoyanlin@wondersoft.cn
+2015-05-25 15:26:10.850 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:10.850 +08:00 Information: [EnterpriseRegistration] 	FileName:短信认证流程.ppt
+2015-05-25 15:26:10.854 +08:00 Information: [EnterpriseRegistration] Mail #7, Id: MSGUID6439234
+2015-05-25 15:26:11.343 +08:00 Information: [EnterpriseRegistration] 	From:1179215839@qq.com
+2015-05-25 15:26:11.344 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:11.345 +08:00 Information: [EnterpriseRegistration] 	FileName:电子签章系统接口说明文档.docx
+2015-05-25 15:26:11.349 +08:00 Information: [EnterpriseRegistration] Mail #8, Id: MSGUID6673611
+2015-05-25 15:26:12.269 +08:00 Information: [EnterpriseRegistration] 	From:13924007606@139.com
+2015-05-25 15:26:12.270 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:12.271 +08:00 Information: [EnterpriseRegistration] 	FileName:寄递物品管理办法.rar
+2015-05-25 15:26:12.274 +08:00 Information: [EnterpriseRegistration] Mail #9, Id: MSGUID7126221
+2015-05-25 15:26:12.602 +08:00 Information: [EnterpriseRegistration] 	From:liudp@primeton.com
+2015-05-25 15:26:12.603 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:12.604 +08:00 Information: [EnterpriseRegistration] Mail #10, Id: MSGUID7126334
+2015-05-25 15:26:13.063 +08:00 Information: [EnterpriseRegistration] 	From:huangzy@customs.gov.cn
+2015-05-25 15:26:13.064 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:13.065 +08:00 Information: [EnterpriseRegistration] Mail #11, Id: MSGUID7315238
+2015-05-25 15:26:13.567 +08:00 Information: [EnterpriseRegistration] 	From:huangzy@customs.gov.cn
+2015-05-25 15:26:13.568 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:13.569 +08:00 Information: [EnterpriseRegistration] 	FileName:transmftallrefinfo.xls
+2015-05-25 15:26:14.532 +08:00 Information: [EnterpriseRegistration] Mail #12, Id: MSGUID7365788
+2015-05-25 15:26:14.822 +08:00 Information: [EnterpriseRegistration] 	From:wangjiahui@bjca.org.cn
+2015-05-25 15:26:14.824 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:14.825 +08:00 Information: [EnterpriseRegistration] Mail #13, Id: MSGUID7367547
+2015-05-25 15:26:15.135 +08:00 Information: [EnterpriseRegistration] 	From:wangjiahui@bjca.org.cn
+2015-05-25 15:26:15.136 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:15.137 +08:00 Information: [EnterpriseRegistration] Mail #14, Id: MSGUID7381049
+2015-05-25 15:26:15.435 +08:00 Information: [EnterpriseRegistration] 	From:wangjiahui@bjca.org.cn
+2015-05-25 15:26:15.436 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:15.438 +08:00 Information: [EnterpriseRegistration] Mail #15, Id: MSGUID7381634
+2015-05-25 15:26:15.707 +08:00 Information: [EnterpriseRegistration] 	From:wangjiahui@bjca.org.cn
+2015-05-25 15:26:15.708 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:15.709 +08:00 Information: [EnterpriseRegistration] Mail #16, Id: MSGUID7398455
+2015-05-25 15:26:32.117 +08:00 Information: [EnterpriseRegistration] 	From:wangjiahui@bjca.org.cn
+2015-05-25 15:26:32.118 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:32.119 +08:00 Information: [EnterpriseRegistration] 	FileName:金关二期（电子签章管理系统）-用户操作手册-20150422.doc
+2015-05-25 15:26:32.125 +08:00 Information: [EnterpriseRegistration] Mail #17, Id: MSGUID7398573
+2015-05-25 15:26:32.294 +08:00 Information: [EnterpriseRegistration] 	From:wangjiahui@bjca.org.cn
+2015-05-25 15:26:32.295 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:32.297 +08:00 Information: [EnterpriseRegistration] Mail #18, Id: MSGUID7419564
+2015-05-25 15:26:48.067 +08:00 Information: [EnterpriseRegistration] 	From:huangxjps@primeton.com
+2015-05-25 15:26:48.069 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:48.070 +08:00 Information: [EnterpriseRegistration] 	FileName:BFT6.0GA使用手册.pdf
+2015-05-25 15:26:48.073 +08:00 Information: [EnterpriseRegistration] 	FileName:ESB6.5.1管理员手册.pdf
+2015-05-25 15:26:48.075 +08:00 Information: [EnterpriseRegistration] Mail #19, Id: MSGUID7427362
+2015-05-25 15:26:48.449 +08:00 Information: [EnterpriseRegistration] 	From:291213913@qq.com
+2015-05-25 15:26:48.450 +08:00 Information: [EnterpriseRegistration] Attachments:
+2015-05-25 15:26:48.451 +08:00 Information: [EnterpriseRegistration] 	FileName:企业备案.zip

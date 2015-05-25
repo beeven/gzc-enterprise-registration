@@ -19,7 +19,9 @@ namespace EnterpriseRegistration.Console
             Configure();
             
             MessageProcessor processor = container.Resolve<MessageProcessor>();
-            processor.PopulateFilters();
+            processor.DoWork();
+            ILogger logger = container.Resolve<ILogger>();
+            logger.Log("Job finished.")
         }
         
         
@@ -29,7 +31,7 @@ namespace EnterpriseRegistration.Console
             builder.RegisterType<MailMessageService>().As<IMessageService>();
             builder.RegisterType<SQLDataService>().As<IDataService>();
             builder.RegisterModule(new FiltersModule());
-            builder.RegisterType<Logger>().As<ILogger>();
+            builder.RegisterType<Logger>().As<ILogger>().SingleInstance();
             builder.RegisterType<MessageProcessor>().AsSelf();
             
             container = builder.Build();

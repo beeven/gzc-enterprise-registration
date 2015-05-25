@@ -9,10 +9,13 @@ namespace EnterpriseRegistration.Interfaces
     public interface IDataService
     {
         Task SaveAsync(Message message);
-        Task<Message> GetByIdAsync(Guid id);
+        Task<Message> GetMessageByIdAsync(Guid id);
 
-        Task DeleteAsync(Guid id);
+        Task<Attachment> GetAttachmentByIdAsync(Guid id);
 
-        IQueryable<Message> Messages { get; }
+        Task DeleteMessageAsync(Guid id);
+
+
+        IQueryable<Message> QueryMessagesAsync(Predicate<Message> predictate);
     }
 }

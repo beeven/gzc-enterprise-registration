@@ -1,11 +1,10 @@
-﻿using System;
+﻿using EnterpriseRegistration.Receipt.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EnterpriseRegistration.Interfaces;
-using EnterpriseRegistration.Interfaces.Entities;
 
-namespace EnterpriseRegistration.Filters
+namespace EnterpriseRegistration.Receipt.Filters
 {
     public static class FilterChainerExtension
     {

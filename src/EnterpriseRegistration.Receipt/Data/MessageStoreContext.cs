@@ -1,21 +1,22 @@
-﻿using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Metadata;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Metadata;
+using EnterpriseRegistration.Receipt.Models;
 using Microsoft.Framework.ConfigurationModel;
-using EnterpriseRegistration.DataService.Models;
 
-namespace EnterpriseRegistration.DataService
+namespace EnterpriseRegistration.Receipt.Data
 {
-    public class MessageStoreContext: DbContext
+    public class MessageStoreContext:DbContext
     {
         public DbSet<Message> Messages { get; set; }
 
         public DbSet<Attachment> Attachments { get; set; }
 
         public DbSet<AttachmentFile> AttachmentFiles { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -31,19 +32,15 @@ namespace EnterpriseRegistration.DataService
                 .ForeignKey(a => a.MessageId);
 
             builder.Entity<Attachment>()
-                .Reference(a => a.File);
-            
-            //builder.Entity<Attachment>().Key(a=>a.AttachmentId);
-            //builder.Entity<Message>().Property(a => a.MessageId).ForSqlServer(b => b.UseSequence());
-            //builder.Entity<Attachment>().Property(a => a.AttachmentId).ForSqlServer(b => b.UseSequence());
+                .Reference(x => x.File);
+
             base.OnModelCreating(builder);
         }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var config = new Configuration();
             config.AddJsonFile("config.json");
-            
+
             optionsBuilder.UseSqlServer(config.Get("Data:DefaultConnection:ConnectionString"));
             //optionsBuilder.UseInMemoryStore();
 

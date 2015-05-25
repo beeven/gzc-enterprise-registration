@@ -1,22 +1,22 @@
-﻿using EnterpriseRegistration.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EnterpriseRegistration.Interfaces.Entities;
 using Microsoft.Framework.ConfigurationModel;
 using OpenPop.Pop3;
 using System.Text.RegularExpressions;
+using EnterpriseRegistration.Receipt.Models;
+using EnterpriseRegistration.Receipt.Logging;
 
-namespace EnterpriseRegistration.MessageService
+namespace EnterpriseRegistration.Receipt.Mail
 {
     public class MailMessageService : IMessageService
     {
-        readonly ILogger _logger;
+        readonly ILogger logger;
         Configuration conf;
         public MailMessageService(ILogger logger)
         {
-            _logger = logger;
+            this.logger = logger;
             conf = new Configuration();
             conf.AddJsonFile("config.json")
                 .AddUserSecrets(); // UserSecrets has higher priority
@@ -34,30 +34,30 @@ namespace EnterpriseRegistration.MessageService
             {
                 try
                 {
-                    _logger.Log($"Connecting host: {host}, port: {port}");
+                    logger.Log($"Connecting host: {host}, port: {port}");
                     client.Connect(host, port, false);
                     client.Authenticate(conf.Get("Mail:Incoming:Account"), conf.Get("Mail:Incoming:Password"));
                 }
                 catch(Exception ex)
                 {
-                    _logger.Log($"Cannot connect to mail server. Exception: {ex.Message}\nStackTrace:{ex.StackTrace}");
+                    logger.Log($"Cannot connect to mail server. Exception: {ex.Message}\nStackTrace:{ex.StackTrace}");
                     yield break;
                 }
                 var infoes = client.GetMessageInfos();
                 foreach(var info in infoes)
                 {
-                    _logger.Log($"Mail #{info.Number}, Id: {info.Identifier}");
+                    logger.Log($"Mail #{info.Number}, Id: {info.Identifier}");
 
                     var m = client.GetMessage(info.Number);
 
-                    _logger.Log($"\tFrom:{m.Headers.From?.Address}");
+                    logger.Log($"\tFrom:{m.Headers.From?.Address}");
 
                     Message msg = new Message()
                     {
                         Subject = m.Headers.Subject,
                         FromAddress = m.Headers.From.Address,
                         FromName = m.Headers.From.DisplayName,
-                        DateSent = m.Headers.DateSent
+                        DateSent = m.Headers.DateSent,
                     };
                     msg.Body = m.FindFirstHtmlVersion()?.GetBodyAsText();
                     if(msg.Body == null)
@@ -65,15 +65,17 @@ namespace EnterpriseRegistration.MessageService
                         msg.Body = m.FindFirstPlainTextVersion().GetBodyAsText();
                     }
                     msg.Attachments = new List<Attachment>();
-                    _logger.Log("Attachments:");
+                    logger.Log("Attachments:");
                     foreach (var a in m.FindAllAttachments())
                     {
-                        _logger.Log($"\tFileName:{a.FileName}");
+                        logger.Log($"\tFileName:{a.FileName}");
                         msg.Attachments.Add(new Attachment()
                         {
-                            Content = a.Body,
-                            FileName = a.FileName,
-                            MIMEType = a.ContentType.MediaType
+                            File = new AttachmentFile()
+                            {
+                                name = a.FileName,
+                                file_stream = a.Body
+                            }
                         });
                     }
 

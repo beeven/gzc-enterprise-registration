@@ -8,9 +8,19 @@ using EnterpriseRegistration.DataService;
 namespace EnterpriseRegistration.DataService.Migrations
 {
     [ContextType(typeof(MessageStoreContext))]
-    partial class MessageStoreContextModelSnapshot : ModelSnapshot
+    partial class initial
     {
-        public override IModel Model
+        public override string Id
+        {
+            get { return "20150525062040_initial"; }
+        }
+        
+        public override string ProductVersion
+        {
+            get { return "7.0.0-beta4-12943"; }
+        }
+        
+        public override IModel Target
         {
             get
             {

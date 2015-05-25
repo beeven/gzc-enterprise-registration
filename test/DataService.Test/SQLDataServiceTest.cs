@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Xunit;
 using EnterpriseRegistration.DataService;
 using EnterpriseRegistration.Interfaces.Entities;
+using FluentAssertions;
 
 
 namespace DataService.Test
@@ -13,52 +14,69 @@ namespace DataService.Test
     // To enable this option, right-click on the project and select the Properties menu item. In the Build tab select "Produce outputs on build".
     public class SQLDataServiceTest
     {
+
+        readonly SQLDataService target;
         public SQLDataServiceTest()
         {
+           target  = new SQLDataService();
         }
 
         [Fact]
-        public async void SaveAndGetAMessage()
+        public async void SaveAndGetMessage()
         {
-            SQLDataService svc = new SQLDataService();
+
+            string stringContent = "This is the content.";
+            byte[] content = System.Text.Encoding.UTF8.GetBytes(stringContent);
+            int sizeOfContent = System.Text.Encoding.UTF8.GetByteCount(stringContent);
+
             Message msg = new Message()
             {
-                 From = "from@addr.com",
+                 FromAddress = "from@addr.com",
+                 FromName = "Renee Benitty",
                  Body = "body",
                  Subject = "subject",
-                 DateReceived = DateTime.Now,
+                 DateSent = DateTime.Now,
                  Attachments = new List<Attachment>()
                  {
                      new Attachment(){ 
                          FileName = "attachment.txt",
-                         MIMEType = "application/octet-stream"
+                         MIMEType = "text/plain",
+                         Content = content,
+                         Size = 0 // should calculate automatically if zero
                      }
                  }
             };
-            await svc.SaveAsync(msg);
-            
-            Assert.True(svc.Messages.Count() >= 1);
-            
+
+            await target.SaveAsync(msg);
+
             var msgId = msg.MessageId;
-            Assert.NotEqual(new Guid(),msgId);
+            msgId.Should().NotBeEmpty();
+
+            var actual = await target.GetMessageByIdAsync(msgId);
+            actual.Should().NotBeNull();
+            actual.Should().NotBeSameAs(msg);
+            actual.FromAddress.Should().Be("from@addr.com");
+            actual.FromName.Should().Be("Renee Benitty");
+            actual.Body.Should().Be("body");
+            actual.Subject.Should().Be("subject");
+            actual.Attachments.Should().NotBeNullOrEmpty().And.HaveCount(1);
+
+            var attachmentInfo = actual.Attachments.ElementAt(0);
+            attachmentInfo.AttachmentId.Should().NotBeEmpty();
+            attachmentInfo.FileName.Should().Be("attachment.txt");
+            attachmentInfo.MIMEType.Should().Be("text/plain");
+            attachmentInfo.MessageId.Should().Be(msgId);
+            attachmentInfo.Message.Should().BeSameAs(actual);
+
+            // according to the interface documentation
+            attachmentInfo.Content.Should().BeNull("it is not necessory to load all content into memory");
+
+            var attachment = await target.GetAttachmentByIdAsync(attachmentInfo.AttachmentId);
+            System.Text.Encoding.UTF8.GetString(attachment.Content).Should().Be("This is the content.");
+            attachment.Size.Should().Be(sizeOfContent);
             
-            var actual = await svc.GetByIdAsync(msgId);
-            Assert.Equal(msg.From, actual.From);
-            Assert.NotNull(actual.Attachments);
-            Assert.Equal(1,actual.Attachments.Count);
-            Assert.Equal("attachment.txt",actual.Attachments.First().FileName);
-            Assert.Equal(actual.MessageId,actual.Attachments[0].MessageId);
         }
         
-        [Fact]
-        public void SaveAMessageFindAnAttachment()
-        {
-            MessageStoreContext ms = new MessageStoreContext();
-            Console.WriteLine("Messages: {0}",ms.Messages.Count());
-            Console.WriteLine("Attachemnts: {0}",ms.Attachments.Count());
-            Message actual = ms.Messages.SingleOrDefault(x => x.MessageId == new Guid("9C9E3928-FEE7-4E8C-B4E8-08D26256FBBB"));
-            Console.WriteLine("Message subject: {0}",actual?.Subject);
-            Console.WriteLine("Message's attachments: {0}",actual?.Attachments.Count);
-        }
+
     }
 }

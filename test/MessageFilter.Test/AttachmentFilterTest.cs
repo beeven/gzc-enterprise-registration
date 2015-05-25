@@ -16,19 +16,19 @@ namespace EnterpriseRegistration.MessageFilter
 			source = new List<Message>()
 			{
 				new Message(){
-					From = "1",
+					FromAddress = "1",
 					Attachments = new List<Attachment>(){}
 				},
 				new Message(){
-					From = "2",
+					FromAddress = "2",
 					Attachments = new List<Attachment>(){new Attachment(){FileName="0.txt"}}
 				},
 				new Message(){
-					From = "3",
+					FromAddress = "3",
 					Attachments = new List<Attachment>(){new Attachment(){FileName="1.xls"}}
 				},
 				new Message(){
-					From = "4",
+					FromAddress = "4",
 					Attachments = new List<Attachment>(){new Attachment(){FileName="2.xlsx"}}
 				}
 			};
@@ -53,11 +53,11 @@ namespace EnterpriseRegistration.MessageFilter
 			
 			List<String> notQualified = new List<String>();
 			var actual = target.Filter(source, x=>{
-				notQualified.AddRange(x.Select(m=>m.From));
+				notQualified.AddRange(x.Select(m=>m.FromAddress));
 			});
 			
 			Assert.Equal(new String[]{"1","2"},notQualified);
-			Assert.Equal(new String[]{"3","4"},actual.Select(x=>x.From));
+			Assert.Equal(new String[]{"3","4"},actual.Select(x=>x.FromAddress));
 		}
 	}
 }
