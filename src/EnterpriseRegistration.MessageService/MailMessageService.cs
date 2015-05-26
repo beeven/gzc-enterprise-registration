@@ -41,9 +41,10 @@ namespace EnterpriseRegistration.MessageService
                 catch(Exception ex)
                 {
                     _logger.Log($"Cannot connect to mail server. Exception: {ex.Message}\nStackTrace:{ex.StackTrace}");
-                    yield break;
+                    return new List<Message>();
                 }
                 var infoes = client.GetMessageInfos();
+                List<Message> ret = new List<Message>();
                 foreach(var info in infoes)
                 {
                     _logger.Log($"Mail #{info.Number}, Id: {info.Identifier}");
@@ -77,16 +78,19 @@ namespace EnterpriseRegistration.MessageService
                         });
                     }
 
-                    yield return msg;
+                    ret.Add(msg);
                 }
+                
+                
 
                 if(Regex.IsMatch(conf.Get("Mail:Incoming:DeleteAfterReceived"),"[Tt]rue|1|[Yy]es"))
                 {
                     client.DeleteAllMessages();
                 }
                 client.Disconnect();
-            }
-               
+                
+                return ret;
+            }  
         }
 
         public async Task SendMessage(string address, Message message)

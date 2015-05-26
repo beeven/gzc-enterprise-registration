@@ -1,7 +1,7 @@
 ﻿{
   "Data": {
     "DefaultConnection": {
-      "ConnectionString": "Server=.;Database=MessageStore;User ID=sa;Password=qwer*1234"
+      "ConnectionString": "Server=10.53.1.180\\sqlexpress;Database=TestDB;User ID=sa;Password=qwer*1234"
     }
   },
   "EntityFramework": {

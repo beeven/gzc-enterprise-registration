@@ -14,14 +14,14 @@ namespace EnterpriseRegistration.Console
     public class Program
     {
         IContainer container;
-        public void Main(string[] args)
+        public async Task Main(string[] args)
         {
             Configure();
             
             MessageProcessor processor = container.Resolve<MessageProcessor>();
-            processor.DoWork();
+            await processor.DoWork();
             ILogger logger = container.Resolve<ILogger>();
-            logger.Log("Job finished.")
+            logger.Log("Job finished.");
         }
         
         

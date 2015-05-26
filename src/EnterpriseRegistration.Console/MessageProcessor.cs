@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using EnterpriseRegistration.Interfaces;
 using EnterpriseRegistration.Interfaces.Entities;
 using EnterpriseRegistration.Filters;
+using System.Threading.Tasks;
 
 namespace EnterpriseRegistration.Console
 {
@@ -11,23 +12,34 @@ namespace EnterpriseRegistration.Console
 		readonly IEnumerable<IMessageFilter> filters;
 		readonly IMessageService msgService;
 		readonly IDataService dataService;
-		public MessageProcessor(IEnumerable<IMessageFilter> filters, IMessageService messageService, IDataService dataService)
+		readonly ILogger logger;
+		public MessageProcessor(IEnumerable<IMessageFilter> filters, 
+								IMessageService messageService, 
+								IDataService dataService,
+								ILogger logger)
 		{
 			this.filters = filters;
 			this.msgService = messageService;
 			this.dataService = dataService;
+			this.logger = logger;
 		}
 
-        public void DoWork()
+        public async Task DoWork()
         {
+			logger.Log("Entering DoWork...");
             var result = msgService.GetMessages();
+			
             foreach(var f in filters)
             {
-                result = result.ApplyFilter(f);
+                result = result.ApplyFilter(f,elems=>{
+					foreach(var elem in elems) {
+						logger.Log($"Not qualified: {elem.FromAddress}");
+					}
+				});
             }
             foreach(var r in result)
             {
-                dataService.SaveAsync(r);
+                await dataService.SaveAsync(r);
             }
         }
 		

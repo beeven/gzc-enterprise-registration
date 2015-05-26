@@ -1,17 +1,17 @@
 ﻿{
   "Mail": {
     "Incoming": {
-      "PopServer": "mail.customs.gov.cn",
+      "PopServer": "172.7.1.2",
       "PopPort": "110",
-      "Account": "abc",
-      "Password": "abc",
+      "Account": "guangzhoukjzf@customs.gov.cn#mail.customs.gov.cn",
+      "Password": "qwer*1234",
       "DeleteAfterReceived": false
     },
     "Outgoing": {
-      "SmtpServer": "mail.customs.gov.cn",
+      "SmtpServer": "172.7.1.2",
       "SmtpPort": "25",
-      "Account": "abc",
-      "Password": "abc"
+      "Account": "guangzhoukjzf@customs.gov.cn",
+      "Password": "qwer*1234"
     }
   }
 }

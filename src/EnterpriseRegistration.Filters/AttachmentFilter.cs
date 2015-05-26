@@ -11,6 +11,7 @@ namespace EnterpriseRegistration.Filters
 	///</summary>
 	public class AttachmentFilter:IMessageFilter
 	{
+		
 		public IEnumerable<Message> Filter(IEnumerable<Message> source)
 		{
 			return Filter(source, null);
@@ -19,7 +20,7 @@ namespace EnterpriseRegistration.Filters
 		public IEnumerable<Message> Filter(IEnumerable<Message> source, Action<IEnumerable<Message>> actionOnNotQualified)
 		{
 			var result = source.Where(x=>
-				x.Attachments.Any(a=> a.FileName.EndsWith("xls") || a.FileName.EndsWith("xlsx"))
+				x.Attachments.Any(a=> a.FileName.ToLower().EndsWith("xls") || a.FileName.ToLower().EndsWith("xlsx"))
 			);
 			if(actionOnNotQualified != null)
 				actionOnNotQualified.Invoke(source.Except(result));
