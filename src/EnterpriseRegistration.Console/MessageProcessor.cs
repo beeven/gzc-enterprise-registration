@@ -26,6 +26,11 @@ namespace EnterpriseRegistration.Console
 
         public async Task DoWork()
         {
+            Message msgReplySuccess = new Message()
+            {
+                Subject = "您的邮件已经收到",
+                Body = "<div>您的邮件已经收到</div>"
+            };
 			logger.Log("Entering DoWork...");
             var result = msgService.GetMessages();
 			
@@ -39,6 +44,7 @@ namespace EnterpriseRegistration.Console
             }
             foreach(var r in result)
             {
+                
                 await dataService.SaveAsync(r);
             }
         }
