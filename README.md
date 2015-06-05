@@ -5,11 +5,17 @@
 基本配置
 -----------
 **接收邮箱：** guangzhoukjzf@customs.gov.cn
+
 **部署服务器：** 10.53.1.186
+
 **部署路径：** ```E:\EntReg\Receipt\Receipt.GetMail\EnterpriseRegistratoin.Console.cmd```
+
 **数据库：** ```Server=10.53.1.186;Database=MessageStore;User ID=******;Password=*******```
+
 **执行方式：** 使用系统的计划任务，周期为每 30min 执行一次
+
 **执行环境：** DNX451
+
 
 功能说明
 -----------
@@ -18,7 +24,8 @@
 存储的信息包括 邮件的 *发件人名称*、*发件人地址*、*发件时间*、*主题*、*内容*，附件的*名称*、*类型*、*大小*、*内容*。附件内容保存到数据库的 FileTable。
 
 可以以文件共享方式通过以下路径访问：
-```\\10.53.1.186\mssqlserver\MessageStore\AttachmentFile\```
+```\\10.53.1.186\mssqlserver\MessageStore\AttachmentFile\ ```
+
 
 或通过数据库访问相应的 FileTable.
 
