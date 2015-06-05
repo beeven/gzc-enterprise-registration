@@ -11,7 +11,7 @@ var paths = {
   bower: "./bower_components/",
   lib: "./" + project.webroot + "/lib/",
   stylus: "./Content/css/",
-  js: "./Content/js/"
+  //js: "./Content/js/"
 };
 
 gulp.task("clean", function (cb) {
@@ -24,7 +24,8 @@ gulp.task("copy", ["clean"], function () {
     "jquery": "jquery/dist/jquery.min.{js,map}",
     "angular": ["angular/angular.min.js", "angular/angular.min.js.map"],
     "angular-ui-bootstrap-bower": "angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js",
-    "angular-ui-grid":"angular-ui-grid/ui-grid.*"
+    "angular-ui-grid":"angular-ui-grid/ui-grid.*",
+    "angular-resource":["angular-resource/angular-resource.min.js","angular-resource/angular-resource.min.js.map"]
   }
 
   for (var destinationDir in bower) {

@@ -17,5 +17,7 @@ namespace EnterpriseRegistration.Interfaces
 
 
         IQueryable<Message> QueryMessagesAsync(Predicate<Message> predictate);
+
+        IQueryable<Message> GetMessages(int pageSize, int offset);
     }
 }

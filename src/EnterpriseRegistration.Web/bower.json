@@ -5,6 +5,7 @@
     "bootstrap": "3.3.4",
     "angular": "1.4.0",
     "angular-ui-grid": "3.0.0-rc.21",
-    "angular-ui-bootstrap-bower": "0.13.0"
+    "angular-ui-bootstrap-bower": "0.13.0",
+    "angular-resource": "1.4.0"
   }
 }

@@ -21,6 +21,8 @@ using Microsoft.Framework.Logging;
 using Microsoft.Framework.Logging.Console;
 using Microsoft.Framework.Runtime;
 using EnterpriseRegistration.Web.Models;
+using EnterpriseRegistration.Interfaces;
+using EnterpriseRegistration.DataService;
 
 namespace EnterpriseRegistration.Web
 {
@@ -83,6 +85,8 @@ namespace EnterpriseRegistration.Web
             // Uncomment the following line to add Web API services which makes it easier to port Web API 2 controllers.
             // You will also need to add the Microsoft.AspNet.Mvc.WebApiCompatShim package to the 'dependencies' section of project.json.
             // services.AddWebApiConventions();
+
+            services.AddScoped<IDataService, SQLDataService>();
         }
 
         // Configure is called after ConfigureServices is called.

@@ -38,7 +38,7 @@ namespace EnterpriseRegistration.DataService
                     File = file,
                     OriginalName = a.FileName,
                     MIMEType = a.MIMEType,
-                    Size = a.Size == 0? a.Content.LongLength : a.Size,
+                    Size = a.Size == 0? a.Content.Length : a.Size,
                     Message = msg
                 };
 
@@ -143,6 +143,42 @@ namespace EnterpriseRegistration.DataService
         public IQueryable<Entities.Message> QueryMessagesAsync(Predicate<Entities.Message> predictate)
         {
             throw new NotImplementedException();
+        }
+
+        public IQueryable<Entities.Message> GetMessages(int pageSize, int offset)
+        {
+            if(pageSize <= 0)
+            {
+                pageSize = 10;
+            }
+            List<Entities.Message> ret = new List<Entities.Message>();
+
+            var msgs = db.Messages.OrderByDescending(x => x.DateSent).Skip(offset).Take(pageSize).ToList();
+
+            var atts = from att in db.Attachments
+                       where msgs.Select(x => x.MessageId).Contains(att.MessageId)
+                       select new Entities.Attachment()
+                       {
+                           AttachmentId = att.AttachmentId,
+                           FileName = att.OriginalName,
+                           MessageId = att.MessageId,
+                           MIMEType = att.MIMEType,
+                           Size = att.Size,
+                           Content = null
+                       };
+            ret = msgs.Select(x => new Entities.Message()
+            {
+                MessageId = x.MessageId,
+                FromAddress = x.FromAddress,
+                FromName = x.FromName,
+                Subject = x.Subject,
+                DateSent = x.DateSent,
+                Body = x.Body,
+                Attachments = atts.Where(a=>a.MessageId == x.MessageId).ToList()
+            }).ToList();
+
+            return ret.AsQueryable();
+            
         }
     }
 }

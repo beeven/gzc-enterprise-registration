@@ -3,26 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using EnterpriseRegistration.Interfaces;
+using EnterpriseRegistration.Interfaces.Entities;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace EnterpriseRegistration.Web.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class MessagesController : Controller
     {
+        readonly IDataService dataService;
+
+        public MessagesController(IDataService dataService)
+        {
+            this.dataService = dataService;
+        }
+
         // GET: api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Message> Get(int pageSize, int offset)
         {
-            return new string[] { "value1", "value2" };
+            return dataService.GetMessages(pageSize, offset);
         }
+        
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<Message> Get(Guid id)
         {
-            return "value";
+            return await dataService.GetMessageByIdAsync(id);
         }
 
         // POST api/values

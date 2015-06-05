@@ -41,7 +41,6 @@ namespace EnterpriseRegistration.Web.Controllers
             {
 
             };
-
             return View(model);
         }
     }

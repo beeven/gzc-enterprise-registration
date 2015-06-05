@@ -4,7 +4,7 @@
   },
   "Data": {
     "DefaultConnection": {
-      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=aspnet5-EnterpriseRegistration.Web-c2603a9a-de62-4a46-abcd-f509fcb11ebb;Trusted_Connection=True;MultipleActiveResultSets=true"
+      "ConnectionString": "Server=.;Database=MessageStore;User ID=sa;Password=qwer*1234"
     }
   }
 }
