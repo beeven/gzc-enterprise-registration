@@ -101,7 +101,7 @@ namespace EnterpriseRegistration.MessageService
             var account = conf.Get("Mail:Outgoing:Account");
             var password = conf.Get("Mail:Outgoing:Password");
             client.Credentials = new System.Net.NetworkCredential(account,password);
-            await client.SendMailAsync(message.FromAddress, address, message.Subject, message.Body);
+            await client.SendMailAsync(account, address, message.Subject, message.Body);
            
         }
     }

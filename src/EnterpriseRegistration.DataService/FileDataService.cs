@@ -55,7 +55,7 @@ namespace EnterpriseRegistration.DataService
             {
                 Parallel.ForEach(message.Attachments, (att) =>
                 {
-                    string id = Guid.NewGuid().ToString().Substring(0, 10);
+                    string id = Guid.NewGuid().ToString("N").Substring(0, 10);
                     string path = $"{basePath}\\{id}_{message.FromAddress}_{message.DateSent.ToString("s").Replace(':','-')}_{att.FileName}";
                     File.WriteAllBytes(path, att.Content);
                 });

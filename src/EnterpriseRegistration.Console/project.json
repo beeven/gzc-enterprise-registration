@@ -13,7 +13,8 @@
     "EnterpriseRegistration.DataService": "1.0.0-*",
     "EnterpriseRegistration.MessageService": "1.0.0-*",
     "EnterpriseRegistration.Filters": "1.0.0-*",
-    "EnterpriseRegistration.Logging": "1.0.0-*"
+    "EnterpriseRegistration.Logging": "1.0.0-*",
+    "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta4"
   },
 
   "commands": {

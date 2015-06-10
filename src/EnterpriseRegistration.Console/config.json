@@ -12,6 +12,11 @@
       "SmtpPort": "25",
       "Account": "guangzhoukjzf@customs.gov.cn",
       "Password": "qwer*1234"
+    },
+    "Reply": {
+      "Subject": "",
+      "Body": "",
+      "DoReply": false
     }
   },
   "Data": {

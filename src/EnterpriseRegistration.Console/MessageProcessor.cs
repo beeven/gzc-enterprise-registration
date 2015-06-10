@@ -4,6 +4,7 @@ using EnterpriseRegistration.Interfaces;
 using EnterpriseRegistration.Interfaces.Entities;
 using EnterpriseRegistration.Filters;
 using System.Threading.Tasks;
+using Microsoft.Framework.ConfigurationModel;
 
 namespace EnterpriseRegistration.Console
 {
@@ -13,6 +14,9 @@ namespace EnterpriseRegistration.Console
 		readonly IMessageService msgService;
 		readonly IEnumerable<IDataService> dataServices;
 		readonly ILogger logger;
+        readonly Configuration conf;
+        private bool replyMsg = false;
+        private Message msgReplySuccess;
 		public MessageProcessor(IEnumerable<IMessageFilter> filters, 
 								IMessageService messageService, 
 								IEnumerable<IDataService> dataServices,
@@ -22,15 +26,22 @@ namespace EnterpriseRegistration.Console
 			this.msgService = messageService;
 			this.dataServices = dataServices;
 			this.logger = logger;
+            conf = new Configuration();
+            conf.AddJsonFile("config.json");
+            replyMsg = conf.Get("Mail:Reply:DoReply");
+            if (replyMsg)
+            {
+                msgReplySuccess = new Message()
+                {
+                    Subject = conf.Get("Mail:Reply:Subject"),
+                    Body = conf.Get("Mail:Reply:Body")
+                };
+            }
 		}
 
         public async Task DoWork()
         {
-            Message msgReplySuccess = new Message()
-            {
-                Subject = "您的邮件已经收到",
-                Body = "<div>您的邮件已经收到</div>"
-            };
+            
 			logger.Log("Entering DoWork...");
             var result = msgService.GetMessages();
 			
@@ -48,8 +59,15 @@ namespace EnterpriseRegistration.Console
                 {
                     await svc.SaveAsync(r);
                 }
+
+                if(replyMsg)
+                {
+                    await msgService.SendMessage(r.FromAddress, msgReplySuccess);
+                }
                 
             }
+
+            
         }
 		
 		public void PopulateFilters()
