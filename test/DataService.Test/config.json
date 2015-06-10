@@ -2,6 +2,9 @@
   "Data": {
     "DefaultConnection": {
       "ConnectionString": "Server=10.53.1.180\\sqlexpress;Database=TestDB;User ID=sa;Password=qwer*1234"
+    },
+    "FileStorage": {
+      "Path": "D:\\Developer"
     }
   },
   "EntityFramework": {

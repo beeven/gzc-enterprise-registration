@@ -11,16 +11,16 @@ namespace EnterpriseRegistration.Console
 	{
 		readonly IEnumerable<IMessageFilter> filters;
 		readonly IMessageService msgService;
-		readonly IDataService dataService;
+		readonly IEnumerable<IDataService> dataServices;
 		readonly ILogger logger;
 		public MessageProcessor(IEnumerable<IMessageFilter> filters, 
 								IMessageService messageService, 
-								IDataService dataService,
+								IEnumerable<IDataService> dataServices,
 								ILogger logger)
 		{
 			this.filters = filters;
 			this.msgService = messageService;
-			this.dataService = dataService;
+			this.dataServices = dataServices;
 			this.logger = logger;
 		}
 
@@ -44,8 +44,11 @@ namespace EnterpriseRegistration.Console
             }
             foreach(var r in result)
             {
+                foreach(var svc in dataServices)
+                {
+                    await svc.SaveAsync(r);
+                }
                 
-                await dataService.SaveAsync(r);
             }
         }
 		
