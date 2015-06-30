@@ -30,8 +30,11 @@ namespace EnterpriseRegistration.DataService
             {
                 var file = new Models.AttachmentFile();
                 file.file_stream = a.Content;
-                file.name = Guid.NewGuid().ToString() + a.FileName.Substring(a.FileName.LastIndexOf("."));
-                
+                String id = Guid.NewGuid().ToString("N").Substring(0, 10);
+                string filename = $"{id}_{message.FromAddress}_{message.DateSent.ToString("s").Replace(':', '-')}_{a.FileName}";
+                file.name = filename;
+                a.PhysicalFileName = filename;
+
                 var attachment = new Models.Attachment()
                 {
                     HashName = file.name,

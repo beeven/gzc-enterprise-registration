@@ -97,7 +97,7 @@ namespace EnterpriseRegistration.MessageService
         {
             System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
             client.Host = conf.Get("Mail:Outgoing:SmtpServer");
-            client.Port = int.Parse("Mail:Outgoing:SmtpPort");
+            client.Port = int.Parse(conf.Get("Mail:Outgoing:SmtpPort"));
             var account = conf.Get("Mail:Outgoing:Account");
             var password = conf.Get("Mail:Outgoing:Password");
             client.Credentials = new System.Net.NetworkCredential(account,password);

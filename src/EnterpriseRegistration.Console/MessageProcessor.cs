@@ -8,7 +8,7 @@ using Microsoft.Framework.ConfigurationModel;
 
 namespace EnterpriseRegistration.Console
 {
-	public class MessageProcessor
+	public class MessageProcessor:IWorker
 	{
 		readonly IEnumerable<IMessageFilter> filters;
 		readonly IMessageService msgService;
@@ -28,7 +28,7 @@ namespace EnterpriseRegistration.Console
 			this.logger = logger;
             conf = new Configuration();
             conf.AddJsonFile("config.json");
-            replyMsg = conf.Get("Mail:Reply:DoReply");
+            replyMsg = conf.Get("Mail:Reply:DoReply")?.ToLower() == "yes" || conf.Get("Mail:Reply:DoReply")?.ToLower() == "true";
             if (replyMsg)
             {
                 msgReplySuccess = new Message()
@@ -66,9 +66,8 @@ namespace EnterpriseRegistration.Console
                 }
                 
             }
-
-            
         }
+
 		
 		public void PopulateFilters()
 		{

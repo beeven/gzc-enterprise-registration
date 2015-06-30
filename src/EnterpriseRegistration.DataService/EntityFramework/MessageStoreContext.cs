@@ -17,6 +17,8 @@ namespace EnterpriseRegistration.DataService
 
         public DbSet<AttachmentFile> AttachmentFiles { get; set; }
 
+        public DbSet<RevertMail> RevertMails { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Message>().Key(a => a.MessageId);
@@ -24,6 +26,8 @@ namespace EnterpriseRegistration.DataService
             builder.Entity<Attachment>().Key(a => a.AttachmentId);
 
             builder.Entity<AttachmentFile>().Key(a => a.stream_id);
+
+            builder.Entity<RevertMail>().Key(a => a.FileName);
 
             builder.Entity<Message>()
                 .Collection(m => m.Attachments)

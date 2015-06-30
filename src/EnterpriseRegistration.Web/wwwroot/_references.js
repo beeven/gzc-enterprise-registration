@@ -8,3 +8,4 @@
 /// <reference path="lib/angular-ui-grid/ui-grid.js" />
 /// <reference path="../content/js/main.js" />
 /// <reference path="js/main.js" />
+/// <reference path="lib/angular-resource/angular-resource.min.js" />

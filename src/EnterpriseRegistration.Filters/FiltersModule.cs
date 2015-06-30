@@ -12,6 +12,10 @@ namespace EnterpriseRegistration.Filters
 			builder.Register(c=> new AttachmentFilter())
 				.As<IMessageFilter>()
 				.InstancePerDependency();
+
+            builder.Register(c => new TrimAttachmentFilter())
+                .As<IMessageFilter>()
+                .InstancePerDependency();
 			
 		}
 	}

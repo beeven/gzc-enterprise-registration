@@ -17,6 +17,11 @@ namespace EnterpriseRegistration.Interfaces.Entities
 
         public long Size { get; set; }
 
+        /// <summary>
+        /// Acutal name of file stored on the disk.
+        /// </summary>
+        public String PhysicalFileName { get; set; }
+
         public Guid MessageId { get; set; }
 
         public Message Message { get; set; }

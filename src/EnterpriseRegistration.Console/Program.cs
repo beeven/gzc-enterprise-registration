@@ -14,16 +14,29 @@ namespace EnterpriseRegistration.Console
     public class Program
     {
         IContainer container;
-        public async Task Main(string[] args)
+        readonly IEnumerable<IWorker> workers;
+
+        public Program(IEnumerable<IWorker> workers)
+        {
+            this.workers = workers;
+        }
+
+        public void Main(string[] args)
         {
             Configure();
-            
-            MessageProcessor processor = container.Resolve<MessageProcessor>();
-            await processor.DoWork();
+
+            Program p = container.Resolve<Program>();
+            p.RunAllWorkers();
+
             ILogger logger = container.Resolve<ILogger>();
             logger.Log("Job finished.");
         }
         
+        public void RunAllWorkers()
+        {
+            var handles = this.workers.Select(x => x.DoWork()).ToArray();
+            Task.WaitAll(handles);
+        }
         
         void Configure()
         {
@@ -33,8 +46,9 @@ namespace EnterpriseRegistration.Console
             builder.RegisterType<FileDataService>().As<IDataService>();
             builder.RegisterModule(new FiltersModule());
             builder.RegisterType<Logger>().As<ILogger>().SingleInstance();
-            builder.RegisterType<MessageProcessor>().AsSelf();
-            
+            builder.RegisterType<MessageProcessor>().As<IWorker>();
+            builder.RegisterType<MessageReplyer>().As<IWorker>();
+            builder.RegisterType<Program>().AsSelf();
             container = builder.Build();
         }
         
