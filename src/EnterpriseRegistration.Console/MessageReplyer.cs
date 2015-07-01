@@ -23,7 +23,7 @@ namespace EnterpriseRegistration.Console
         }
         public async Task DoWork()
         {
-            var files = ctx.RevertMails.Where(x => x.ErrorNum > 0 && (x.SendFlag == null || x.SendFlag == DataService.Models.SendStatus.Pending));
+            var files = ctx.RevertMails.Where(x => x.SendFlag == null || x.SendFlag == DataService.Models.SendStatus.Pending);
             foreach (var f in files)
             {
                 var name_match = Regex.Match(f.FileName, @"^\w{10}_(.+@.+)_\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}_(.+)$");
@@ -31,12 +31,20 @@ namespace EnterpriseRegistration.Console
                 {
                     string receipt = name_match.Groups[1].Value;
                     string filename = name_match.Groups[2].Value;
-
-                    System.Console.WriteLine($"Receipt: {receipt}, FileName: {filename}");
+                    string subject = filename + (f.ErrorNum > 0 ? "解析错误" : "解析通过");
+                    string body;
+                    if (f.ErrorNum > 0)
+                    {
+                        body = $"文件 \"{filename}\" 解析错误。\n错误行数: {f.ErrorNum} \n正确行数: {f.RightNum}\n\n请启用模板文件的宏进行数据格式校验。";
+                    }
+                    else
+                    {
+                        body = $"文件 \"{filename}\" 解析通过。\n处理行数: {f.RightNum}";
+                    }
                     Interfaces.Entities.Message msg = new Interfaces.Entities.Message()
                     {
-                        Subject = filename + "解释错误",
-                        Body = $"文件 \"{filename}\" 解释错误。\n错误行数: {f.ErrorNum} \n正确行数: {f.RightNum}\n\n请启用模板文件的宏进行数据格式校验。"
+                        Subject = subject,
+                        Body = body
                     };
                     try
                     {
