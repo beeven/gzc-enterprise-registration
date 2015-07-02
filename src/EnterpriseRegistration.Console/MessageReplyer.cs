@@ -23,7 +23,7 @@ namespace EnterpriseRegistration.Console
         }
         public async Task DoWork()
         {
-            var files = ctx.RevertMails.Where(x => x.SendFlag == null || x.SendFlag == DataService.Models.SendStatus.Pending);
+            var files = ctx.RevertMails.Where(x => x.SendFlag == null || x.SendFlag == DataService.Models.Status.Pending);
             foreach (var f in files)
             {
                 var name_match = Regex.Match(f.FileName, @"^\w{10}_(.+@.+)_\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}_(.+)$");
@@ -49,12 +49,12 @@ namespace EnterpriseRegistration.Console
                     try
                     {
                         await msgSvc.SendMessage(receipt, msg);
-                        f.SendFlag = DataService.Models.SendStatus.Sent;
+                        f.SendFlag = DataService.Models.Status.Sent;
                         logger.Log($"Replied message to {receipt} about {filename}.");
                     }
                     catch(Exception ex)
                     {
-                        f.SendFlag = DataService.Models.SendStatus.Error;
+                        f.SendFlag = DataService.Models.Status.Error;
                         logger.Log($"Error when reply message to {receipt} about {filename}.");
                         System.Console.WriteLine($"Message: {ex.Message}\r\nStackTrace: {ex.StackTrace}");
                     }

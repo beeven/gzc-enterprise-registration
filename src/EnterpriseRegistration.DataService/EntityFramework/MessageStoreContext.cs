@@ -27,7 +27,12 @@ namespace EnterpriseRegistration.DataService
 
             builder.Entity<AttachmentFile>().Key(a => a.stream_id);
 
-            builder.Entity<RevertMail>().Key(a => a.FileName);
+            builder.Entity<RevertMail>().Key(a => a.OID);
+
+            builder.Entity<RevertMail>().Property(x => x.OID)
+                .StoreComputed(true);
+
+            
 
             builder.Entity<Message>()
                 .Collection(m => m.Attachments)
