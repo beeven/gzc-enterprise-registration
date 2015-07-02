@@ -17,6 +17,7 @@ namespace EnterpriseRegistration.DataService.Models
         /// </summary>
         public int OID { get; set; }
 
+
         /// <summary>
         /// Physical file name
         /// </summary>

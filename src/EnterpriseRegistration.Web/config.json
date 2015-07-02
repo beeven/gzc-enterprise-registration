@@ -4,7 +4,7 @@
   },
   "Data": {
     "DefaultConnection": {
-      "ConnectionString": "Server=.;Database=MessageStore;User ID=sa;Password=qwer*1234"
+      "ConnectionString": "Server=.;Database=MessageStore;User ID=EntRegAdmin;Password=qwer*1234"
     }
   }
 }
