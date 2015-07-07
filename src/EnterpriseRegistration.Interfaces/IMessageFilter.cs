@@ -12,6 +12,8 @@ namespace EnterpriseRegistration.Interfaces
 
         IEnumerable<Message> Filter(IEnumerable<Message> source, Action<IEnumerable<Message>> actionOnNotQuaulified);
 
+        String Name { get; }
+
     }
 
 }

@@ -20,11 +20,13 @@ namespace EnterpriseRegistration.Filters
 		public IEnumerable<Message> Filter(IEnumerable<Message> source, Action<IEnumerable<Message>> actionOnNotQualified)
 		{
 			var result = source.Where(x=>
-				x.Attachments.Any(a=> a.FileName.ToLower().EndsWith("xlsm") )
+				x.Attachments.Any(a=> a.FileName.ToLower().EndsWith("xlsm") || a.FileName.ToLower().EndsWith("xlsx") )
 			);
 			if(actionOnNotQualified != null)
 				actionOnNotQualified.Invoke(source.Except(result));
 			return result;
 		}
+
+        public String Name { get; } = "AttachmentFilter";
 	}
 }

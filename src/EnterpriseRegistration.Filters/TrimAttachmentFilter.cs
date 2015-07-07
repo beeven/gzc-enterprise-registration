@@ -18,9 +18,11 @@ namespace EnterpriseRegistration.Filters
         {
             foreach(var msg in source)
             {
-                msg.Attachments.RemoveAll(x => !x.FileName.ToLower().EndsWith("xlsm"));   
+                msg.Attachments.RemoveAll(x=> !(x.FileName.ToLower().EndsWith("xlsm") || x.FileName.ToLower().EndsWith("xlsx")));   
             }
             return source;
         }
+
+        public String Name { get; } = "TrimAttachmentFilter";
     }
 }

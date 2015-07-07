@@ -44,7 +44,7 @@ namespace EnterpriseRegistration.MessageFilter
 		{
 			var actual = target.Filter(source);
 			Assert.NotNull(actual);
-			Assert.Equal(2, actual.Count());
+			Assert.Equal(1, actual.Count());
 		}
 		
 		[Fact]
@@ -56,8 +56,8 @@ namespace EnterpriseRegistration.MessageFilter
 				notQualified.AddRange(x.Select(m=>m.FromAddress));
 			});
 			
-			Assert.Equal(new String[]{"1","2"},notQualified);
-			Assert.Equal(new String[]{"3","4"},actual.Select(x=>x.FromAddress));
+			Assert.Equal(new String[]{"1","2","3"},notQualified);
+			Assert.Equal(new String[]{"4"},actual.Select(x=>x.FromAddress));
 		}
 	}
 }

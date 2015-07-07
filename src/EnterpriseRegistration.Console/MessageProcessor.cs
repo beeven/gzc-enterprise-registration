@@ -5,6 +5,7 @@ using EnterpriseRegistration.Interfaces.Entities;
 using EnterpriseRegistration.Filters;
 using System.Threading.Tasks;
 using Microsoft.Framework.ConfigurationModel;
+using System.Linq;
 
 namespace EnterpriseRegistration.Console
 {
@@ -47,9 +48,10 @@ namespace EnterpriseRegistration.Console
 			
             foreach(var f in filters)
             {
+                logger.Log($"Applying Filter: {f.GetType().Name}, {f.Name}");
                 result = result.ApplyFilter(f,elems=>{
 					foreach(var elem in elems) {
-						logger.Log($"Not qualified: {elem.FromAddress}");
+						logger.Log($"Not qualified: {elem.FromAddress}. Attachments: {String.Join(",",elem.Attachments.Select(x=>x.FileName))}");
 					}
 				});
             }
