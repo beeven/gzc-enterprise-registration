@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using EnterpriseRegistration.Interfaces;
 using EnterpriseRegistration.Interfaces.Entities;
@@ -17,7 +17,6 @@ namespace EnterpriseRegistration.Console
 		readonly ILogger logger;
         readonly Configuration conf;
         private bool replyMsg = false;
-        private Message msgReplySuccess;
 		public MessageProcessor(IEnumerable<IMessageFilter> filters, 
 								IMessageService messageService, 
 								IEnumerable<IDataService> dataServices,
@@ -30,28 +29,25 @@ namespace EnterpriseRegistration.Console
             conf = new Configuration();
             conf.AddJsonFile("config.json");
             replyMsg = conf.Get("Mail:Reply:DoReply")?.ToLower() == "yes" || conf.Get("Mail:Reply:DoReply")?.ToLower() == "true";
-            if (replyMsg)
-            {
-                msgReplySuccess = new Message()
-                {
-                    Subject = conf.Get("Mail:Reply:Subject"),
-                    Body = conf.Get("Mail:Reply:Body")
-                };
-            }
+            
 		}
 
         public async Task DoWork()
         {
-            
-			logger.Log("Entering DoWork...");
+                logger.Log("Fetching mails...");         
             var result = msgService.GetMessages();
+			
+			List<String> invalidMessageAddresses = new List<String>();
 			
             foreach(var f in filters)
             {
                 logger.Log($"Applying Filter: {f.GetType().Name}, {f.Name}");
                 result = result.ApplyFilter(f,elems=>{
 					foreach(var elem in elems) {
+
 						logger.Log($"Not qualified: {elem.FromAddress}. Attachments: {String.Join(",",elem.Attachments.Select(x=>x.FileName))}");
+
+                        invalidMessageAddresses.Add(elem.FromAddress);
 					}
 				});
             }
@@ -61,13 +57,15 @@ namespace EnterpriseRegistration.Console
                 {
                     await svc.SaveAsync(r);
                 }
-
-                if(replyMsg)
-                {
-                    await msgService.SendMessage(r.FromAddress, msgReplySuccess);
-                }
-                
             }
+			foreach(var addr in invalidMessageAddresses)
+			{
+				await msgService.SendMessage(addr,new Message(){
+                    Subject = "附件内容不合法",
+                    Body = "附件内容不符合校验规则，请下载最新模板填写后再次发送。\n" +
+                            "http://211.155.17.204/entreg/pay.rar"
+                });
+			}
         }
 
 		

@@ -191,3 +191,9 @@ ModelManifest.xml
 
 project.lock.json
 .vs/
+
+src/EnterpriseRegistration.Console/dump.txt
+src/EnterpriseRegistration.Console/file-*.txt
+src/EnterpriseRegistration.Console/file-*.json
+
+wwwroot/

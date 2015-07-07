@@ -1,17 +1,18 @@
 {
   "Mail": {
     "Incoming": {
-      "PopServer": "",
+      "PopServer": "172.7.1.2",
       "PopPort": "110",
-      "Account": "",
-      "Password": "",
-      "DeleteAfterReceived": false
+      "Account": "guangzhoukjzf@customs.gov.cn#mail.customs.gov.cn",
+      "Password": "qwer*1234",
+      "DeleteAfterReceived": true,
+      "Reply": false
     },
     "Outgoing": {
-      "SmtpServer": "",
+      "SmtpServer": "172.7.1.2",
       "SmtpPort": "25",
-      "Account": "",
-      "Password": ""
+      "Account": "guangzhoukjzf@customs.gov.cn",
+      "Password": "qwer*1234"
     },
     "Reply": {
       "Subject": "",
@@ -21,7 +22,10 @@
   },
   "Data": {
     "DefaultConnection": {
-       "ConnectionString": "Server=.;Database=MessageStore;User ID=sa;Password=qwer*1234"
+       "ConnectionString": "Server=.;Database=MessageStore;User ID=EntRegAdmin;Password=qwer*1234"
+    },
+    "FileStorage":{
+      "Path":"\\\\10.53.1.183\\支付回执\\Receive"
     }
   },
   "EntityFramework": {
