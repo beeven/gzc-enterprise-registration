@@ -16,7 +16,6 @@ namespace EnterpriseRegistration.Console
 		readonly IEnumerable<IDataService> dataServices;
 		readonly ILogger logger;
         readonly Configuration conf;
-        private bool replyMsg = false;
 		public MessageProcessor(IEnumerable<IMessageFilter> filters, 
 								IMessageService messageService, 
 								IEnumerable<IDataService> dataServices,
@@ -28,7 +27,7 @@ namespace EnterpriseRegistration.Console
 			this.logger = logger;
             conf = new Configuration();
             conf.AddJsonFile("config.json");
-            replyMsg = conf.Get("Mail:Reply:DoReply")?.ToLower() == "yes" || conf.Get("Mail:Reply:DoReply")?.ToLower() == "true";
+            
             
 		}
 
@@ -41,7 +40,7 @@ namespace EnterpriseRegistration.Console
 			
             foreach(var f in filters)
             {
-                logger.Log($"Applying Filter: {f.GetType().Name}, {f.Name}");
+                logger.Log($"Applying Filter: {f.GetType().Name}");
                 result = result.ApplyFilter(f,elems=>{
 					foreach(var elem in elems) {
 

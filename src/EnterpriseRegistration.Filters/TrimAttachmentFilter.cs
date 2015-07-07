@@ -22,7 +22,6 @@ namespace EnterpriseRegistration.Filters
             }
             return source;
         }
-
-        public String Name { get; } = "TrimAttachmentFilter";
+        
     }
 }

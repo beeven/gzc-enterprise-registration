@@ -26,7 +26,6 @@ namespace EnterpriseRegistration.Filters
 				actionOnNotQualified.Invoke(source.Except(result));
 			return result;
 		}
-
-        public String Name { get; } = "AttachmentFilter";
+        
 	}
 }
