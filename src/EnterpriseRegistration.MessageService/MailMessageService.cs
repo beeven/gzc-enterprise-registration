@@ -63,7 +63,11 @@ namespace EnterpriseRegistration.MessageService
                     msg.Body = m.FindFirstHtmlVersion()?.GetBodyAsText();
                     if(msg.Body == null)
                     {
-                        msg.Body = m.FindFirstPlainTextVersion().GetBodyAsText();
+                        msg.Body = m.FindFirstPlainTextVersion()?.GetBodyAsText();
+                    }
+                    if(msg.Body == null)
+                    {
+                        msg.Body = "";
                     }
                     msg.Attachments = new List<Attachment>();
                     _logger.Log("Attachments:");

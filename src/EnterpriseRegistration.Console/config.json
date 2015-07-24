@@ -20,7 +20,7 @@
        "ConnectionString": "Server=.;Database=MessageStore;User ID=EntRegAdmin;Password=qwer*1234"
     },
     "FileStorage":{
-      "Path":"\\\\10.53.1.183\\支付回执\\Receive"
+      "Path":"\\\\10.53.34.101\\支付回执\\Receive"
     }
   },
   "EntityFramework": {

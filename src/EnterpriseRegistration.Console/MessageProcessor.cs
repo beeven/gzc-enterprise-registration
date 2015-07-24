@@ -14,6 +14,8 @@ namespace EnterpriseRegistration.Console
 		readonly IEnumerable<IMessageFilter> filters;
 		readonly IMessageService msgService;
 		readonly IEnumerable<IDataService> dataServices;
+		readonly IDataService fileDataService;
+		readonly IDataService sqlDataService;
 		readonly ILogger logger;
         readonly Configuration conf;
 		public MessageProcessor(IEnumerable<IMessageFilter> filters, 
@@ -25,6 +27,7 @@ namespace EnterpriseRegistration.Console
 			this.msgService = messageService;
 			this.dataServices = dataServices;
 			this.logger = logger;
+			
             conf = new Configuration();
             conf.AddJsonFile("config.json");
             
