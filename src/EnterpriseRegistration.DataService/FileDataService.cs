@@ -68,6 +68,7 @@ namespace EnterpriseRegistration.DataService
                     var tempfile = Path.GetTempFileName();
                     File.WriteAllBytes(tempfile, att.Content);
                     File.Move(tempfile, path);
+                    File.Delete(tempfile);
                 });
             });
 

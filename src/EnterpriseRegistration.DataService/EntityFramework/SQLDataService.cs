@@ -23,7 +23,8 @@ namespace EnterpriseRegistration.DataService
                 Subject = message.Subject,
                 DateSent = message.DateSent,
                 FromAddress = message.FromAddress,
-                FromName = message.FromName
+                FromName = message.FromName,
+                DateCreated = DateTime.Now
             };
 
             foreach(var a in message.Attachments)

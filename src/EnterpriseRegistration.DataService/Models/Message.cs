@@ -19,6 +19,8 @@ namespace EnterpriseRegistration.DataService.Models
 
         public String Body { get; set; }
 
+        public DateTime? DateCreated { get; set; }
+
         public virtual List<Attachment> Attachments { get; set; }
 
         public Message()

@@ -45,7 +45,8 @@ namespace EnterpriseRegistration.DataService.Migrations
                     FromAddress = table.Column(type: "nvarchar(max)", nullable: true),
                     FromName = table.Column(type: "nvarchar(max)", nullable: true),
                     MessageId = table.Column(type: "uniqueidentifier", nullable: false),
-                    Subject = table.Column(type: "nvarchar(max)", nullable: true)
+                    Subject = table.Column(type: "nvarchar(max)", nullable: true),
+                    DateCreated = table.Column(type:"datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
