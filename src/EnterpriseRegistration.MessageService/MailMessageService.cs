@@ -14,12 +14,14 @@ namespace EnterpriseRegistration.MessageService
     {
         readonly ILogger _logger;
         Configuration conf;
+        Pop3Client client;
         public MailMessageService(ILogger logger)
         {
             _logger = logger;
             conf = new Configuration();
             conf.AddJsonFile("config.json")
                 .AddUserSecrets(); // UserSecrets has higher priority
+            client = new Pop3Client();
         }
 
         public IEnumerable<Message> GetMessages()
@@ -30,8 +32,7 @@ namespace EnterpriseRegistration.MessageService
             int port;
             if (!int.TryParse(confport, out port)) port = 110;
 
-            using (var client = new Pop3Client())
-            {
+           
                 try
                 {
                     _logger.Log($"Connecting host: {host}, port: {port}");
@@ -91,10 +92,10 @@ namespace EnterpriseRegistration.MessageService
                 {
                     client.DeleteAllMessages();
                 }
-                client.Disconnect();
+                //client.Disconnect();
                 
                 return ret;
-            }  
+           
         }
 
         public async Task SendMessage(string address, Message message)
@@ -107,6 +108,24 @@ namespace EnterpriseRegistration.MessageService
             client.Credentials = new System.Net.NetworkCredential(account,password);
             await client.SendMailAsync(account, address, message.Subject, message.Body);
            
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            //GC.SuppressFinalize(this);
+        }
+        void Dispose(bool disposing)
+        {
+            if(disposing)
+            {
+                if(client != null)
+                {
+                    if(client.Connected) client.Disconnect();
+                    client.Dispose();
+                    client = null;
+                }
+            }
         }
     }
 }

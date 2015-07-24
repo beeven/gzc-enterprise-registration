@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using EnterpriseRegistration.Interfaces;
 using EnterpriseRegistration.Interfaces.Entities;
 using EnterpriseRegistration.Filters;
+using EnterpriseRegistration.DataService;
 using System.Threading.Tasks;
 using Microsoft.Framework.ConfigurationModel;
 using System.Linq;
@@ -13,19 +14,20 @@ namespace EnterpriseRegistration.Console
 	{
 		readonly IEnumerable<IMessageFilter> filters;
 		readonly IMessageService msgService;
-		readonly IEnumerable<IDataService> dataServices;
 		readonly IDataService fileDataService;
 		readonly IDataService sqlDataService;
 		readonly ILogger logger;
         readonly Configuration conf;
 		public MessageProcessor(IEnumerable<IMessageFilter> filters, 
 								IMessageService messageService, 
-								IEnumerable<IDataService> dataServices,
-								ILogger logger)
+								ILogger logger,
+                                FileDataService fileDataService,
+                                SQLDataService sqlDataService)
 		{
 			this.filters = filters;
 			this.msgService = messageService;
-			this.dataServices = dataServices;
+            this.fileDataService = fileDataService;
+            this.sqlDataService = sqlDataService;
 			this.logger = logger;
 			
             conf = new Configuration();
@@ -53,13 +55,12 @@ namespace EnterpriseRegistration.Console
 					}
 				});
             }
-            foreach(var r in result)
-            {
-                foreach(var svc in dataServices)
-                {
-                    await svc.SaveAsync(r);
-                }
-            }
+
+            await Task.WhenAll(result.Select(x => sqlDataService.SaveAsync(x)));
+            await Task.WhenAll(result.Select(x => fileDataService.SaveAsync(x)));
+
+            
+
 			foreach(var addr in invalidMessageAddresses)
 			{
 				await msgService.SendMessage(addr,new Message(){
@@ -68,6 +69,8 @@ namespace EnterpriseRegistration.Console
                             "http://211.155.17.204/entreg/pay.rar"
                 });
 			}
+
+            msgService.Dispose();
         }
 
 		

@@ -65,8 +65,9 @@ namespace EnterpriseRegistration.DataService
                     {
                         path = $"{basePath}\\{att.PhysicalFileName}";
                     }
-                    
-                    File.WriteAllBytes(path, att.Content);
+                    var tempfile = Path.GetTempFileName();
+                    File.WriteAllBytes(tempfile, att.Content);
+                    File.Move(tempfile, path);
                 });
             });
 

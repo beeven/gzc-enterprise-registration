@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EnterpriseRegistration.Interfaces
 {
-    public interface IMessageService
+    public interface IMessageService:IDisposable
     {
         IEnumerable<Message> GetMessages();
 
